@@ -69,7 +69,7 @@ final class PageImporter extends AbstractImporter implements PageImporterInterfa
             $url = $this->getTranslatableColumnValue(self::IMAGE_COLUMN, $locale, $row);
             $imageCode = $this->getTranslatableColumnValue(self::IMAGE_CODE_COLUMN, $locale, $row);
 
-            if (null !== $url) {
+            if (null !== $url && '' !== $url) {
                 $this->resolveImage($page, $url, $locale, $imageCode);
             }
         }

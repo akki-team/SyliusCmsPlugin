@@ -48,13 +48,7 @@ trait ResourceDataProcessingTrait
     private function setPathForImageMediaType(MediaInterface $media): void
     {
         Assert::string($media->getPath());
-        if (!$this->cacheManager->isStored($media->getPath(), $this::FILTER)) {
-            $this->cacheManager->store($this->dataManager->find($this::FILTER, $media->getPath()), $media->getPath(), $this::FILTER);
-        }
-        $resolvedPath = $this->cacheManager->resolve($media->getPath(), $this::FILTER);
-        $fileContents = file_get_contents($resolvedPath);
-        Assert::string($fileContents);
-        $this->setFileContentsAsMediaPath($media, $fileContents);
+        $this->setFileContentsAsMediaPath($media, $this->dataManager->find($this::FILTER, $media->getPath())->getContent());
     }
 
     private function setPathForNonImageMediaType(MediaInterface $media): void

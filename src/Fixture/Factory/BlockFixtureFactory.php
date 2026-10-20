@@ -66,15 +66,15 @@ final class BlockFixtureFactory implements FixtureFactoryInterface
         /** @var BlockInterface $block */
         $block = $this->blockFactory->createNew();
 
-        $products = $blockData['products'];
-        if (null !== $products) {
-            $this->resolveProducts($block, $products);
-        }
-
         $this->sectionsAssigner->assign($block, $blockData['sections']);
         $this->productsAssigner->assign($block, $blockData['productCodes']);
         $this->taxonsAssigner->assign($block, $blockData['taxons']);
         $this->channelAssigner->assign($block, $blockData['channels']);
+
+        $products = $blockData['products'];
+        if (null !== $products) {
+            $this->resolveProducts($block, $products);
+        }
 
         $block->setCode($code);
         $block->setEnabled($blockData['enabled']);
@@ -95,15 +95,17 @@ final class BlockFixtureFactory implements FixtureFactoryInterface
 
     private function resolveProducts(BlockInterface $block, int $limit): void
     {
-        /** @var ChannelInterface $channel */
-        $channel = $this->channelContext->getChannel();
-        $products = $this->productRepository->findLatestByChannel(
-            $channel,
-            $this->localeContext->getLocaleCode(),
-            $limit,
-        );
-        foreach ($products as $product) {
-            $block->addProduct($product);
+        /** @var ChannelInterface[] $channels */
+        $channels = $block->getChannels()->isEmpty() ? [$this->channelContext->getChannel()] : $block->getChannels()->toArray();
+        foreach ($channels as $channel) {
+            $products = $this->productRepository->findLatestByChannel(
+                $channel,
+                $this->localeContext->getLocaleCode(),
+                $limit,
+            );
+            foreach ($products as $product) {
+                $block->addProduct($product);
+            }
         }
     }
 }

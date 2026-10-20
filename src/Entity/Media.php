@@ -15,7 +15,6 @@ use Sylius\Resource\Model\ToggleableTrait;
 use Sylius\Resource\Model\TranslatableTrait;
 use Sylius\Resource\Model\TranslationInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Webmozart\Assert\Assert;
 
 class Media implements MediaInterface
 {
@@ -235,9 +234,6 @@ class Media implements MediaInterface
 
     public function __toString(): string
     {
-        $result = $this->getName() ?? $this->code;
-        Assert::string($result);
-
-        return $result;
+        return (string) ($this->getName() ?? $this->code);
     }
 }

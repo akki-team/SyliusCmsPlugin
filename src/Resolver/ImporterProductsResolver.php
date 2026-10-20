@@ -21,7 +21,7 @@ final class ImporterProductsResolver implements ImporterProductsResolverInterfac
 
     public function resolve(ProductsAwareInterface $productsAware, ?string $productsRow): void
     {
-        if (null === $productsRow) {
+        if (null === $productsRow || '' === trim($productsRow)) {
             return;
         }
 
