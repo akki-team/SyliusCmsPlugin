@@ -13,12 +13,10 @@ namespace BitBag\SyliusCmsPlugin\Controller;
 use BitBag\SyliusCmsPlugin\Entity\PageInterface;
 use BitBag\SyliusCmsPlugin\Entity\PageTranslationInterface;
 use BitBag\SyliusCmsPlugin\Resolver\PageResourceResolverInterface;
-use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
-use Sylius\Component\Resource\ResourceActions;
+use Sylius\Resource\ResourceActions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 final class PageController extends ResourceController
 {
@@ -36,7 +34,7 @@ final class PageController extends ResourceController
 
         $this->isGrantedOr403($configuration, ResourceActions::SHOW);
 
-        $code = $request->get('code');
+        $code = $request->attributes->get('code', $request->query->get('code'));
 
         $page = $this->pageResourceResolver->findOrLog($code);
 
@@ -55,9 +53,7 @@ final class PageController extends ResourceController
             ]);
         }
 
-        Assert::true(null !== $this->viewHandler);
-
-        return $this->viewHandler->handle($configuration, View::create($page));
+        return $this->createRestView($configuration, $page);
     }
 
     public function previewAction(Request $request): Response
@@ -69,20 +65,19 @@ final class PageController extends ResourceController
         /** @var PageInterface $page */
         $page = $this->getResourceInterface($request);
         $form = $this->getFormForResource($configuration, $page);
-        $defaultLocale = $this->getParameter('locale');
+        $defaultLocale = (string) $this->getParameter('locale');
 
         $form->handleRequest($request);
 
-        $page->setFallbackLocale($request->get('_locale', $defaultLocale));
-        $page->setCurrentLocale($request->get('_locale', $defaultLocale));
+        $page->setFallbackLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
+        $page->setCurrentLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
 
         $this->resolveImage($page);
 
         $this->formErrorsFlashHelper->addFlashErrors($form);
 
         if (!$configuration->isHtmlRequest()) {
-            Assert::true(null !== $this->viewHandler);
-            $this->viewHandler->handle($configuration, View::create($page));
+            return $this->createRestView($configuration, $page);
         }
 
         return $this->render($configuration->getTemplate(ResourceActions::CREATE . '.html'), [

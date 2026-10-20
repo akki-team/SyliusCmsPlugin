@@ -13,23 +13,20 @@ namespace Tests\BitBag\SyliusCmsPlugin\Functional\Fixture;
 use BitBag\SyliusCmsPlugin\Fixture\Factory\FixtureFactoryInterface;
 use BitBag\SyliusCmsPlugin\Fixture\FrequentlyAskedQuestionFixture;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class FrequentlyAskedQuestionFixtureTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_are_optional(): void
     {
         $this->assertConfigurationIsValid([[]], 'custom');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_enabled_is_optional_but_must_be_boolean(): void
     {
         $this->assertConfigurationIsValid([
@@ -53,9 +50,7 @@ final class FrequentlyAskedQuestionFixtureTest extends TestCase
         ], 'custom.*.enabled');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_remove_existing_is_optional_but_must_be_boolean(): void
     {
         $this->assertConfigurationIsValid([
@@ -79,9 +74,7 @@ final class FrequentlyAskedQuestionFixtureTest extends TestCase
         ], 'custom.*.remove_existing');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_number_is_optional_but_must_be_integer(): void
     {
         $this->assertConfigurationIsValid([
@@ -105,9 +98,7 @@ final class FrequentlyAskedQuestionFixtureTest extends TestCase
         ], 'custom.*.number');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_position_is_optional_but_must_be_integer(): void
     {
         $this->assertConfigurationIsValid([
@@ -131,9 +122,7 @@ final class FrequentlyAskedQuestionFixtureTest extends TestCase
         ], 'custom.*.position');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_translations_is_optional_but_must_be_array(): void
     {
         $this->assertConfigurationIsValid([
@@ -157,9 +146,7 @@ final class FrequentlyAskedQuestionFixtureTest extends TestCase
         ], 'custom.*.translations');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_may_contain_question(): void
     {
         $this->assertConfigurationIsValid([
@@ -191,9 +178,7 @@ final class FrequentlyAskedQuestionFixtureTest extends TestCase
         ], 'custom.*.translations.*.question');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_may_contain_answer(): void
     {
         $this->assertConfigurationIsValid([

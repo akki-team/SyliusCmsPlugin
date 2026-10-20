@@ -47,7 +47,7 @@ final class ImportDataAction
             if ($form->isValid()) {
                 /** @var UploadedFile $file */
                 $file = $form->get('file')->getData();
-                $resourceName = $request->get('resourceName');
+                $resourceName = $request->attributes->get('resourceName', $request->query->get('resourceName'));
                 /** @var Session $session */
                 $session = $this->requestStack->getSession();
                 $flashBag = $session->getFlashBag();

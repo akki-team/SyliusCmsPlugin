@@ -1,7 +1,8 @@
 imports:
     - { resource: "@BitBagSyliusCmsPlugin/Resources/config/resources.yml" }
     - { resource: "@BitBagSyliusCmsPlugin/Resources/config/grids.yml" }
-    - { resource: "@BitBagSyliusCmsPlugin/Resources/config/services.xml" }
+    - { resource: "@BitBagSyliusCmsPlugin/Resources/config/services.php" }
+    - { resource: "@BitBagSyliusCmsPlugin/Resources/config/twig_hooks/admin.yml" }
 
 parameters:
     sylius.sitemap.path: "%kernel.project_dir%/var/sitemap"
@@ -17,24 +18,14 @@ parameters:
     bitbag_sylius_cms_plugin.form.type.translation.section.validation_groups: "%bitbag_validation_group%"
     bitbag_sylius_cms_plugin.form.type.translation.media.validation_groups: "%bitbag_validation_group%"
     bitbag_sylius_cms_plugin.form.type.media.validation_groups: "%bitbag_validation_group%"
-    bitbag_sylius_cms_plugin.uploader.filesystem: bitbag_sylius_cms_plugin_media
 
-jms_serializer:
-    metadata:
-        directories:
-            bitbag-section:
-                namespace_prefix: "BitBag\\SyliusCmsPlugin"
-                path: "@BitBagSyliusCmsPlugin/Resources/config/serializer"
-
-knp_gaufrette:
-    adapters:
-        bitbag_sylius_cms_plugin_media:
-            local:
-                directory: "%sylius_core.public_dir%"
-                create: true
-    filesystems:
-        bitbag_sylius_cms_plugin_media:
-            adapter: "%bitbag_sylius_cms_plugin.uploader.filesystem%"
+flysystem:
+    storages:
+        bitbag_sylius_cms_plugin.storage:
+            adapter: 'local'
+            options:
+                directory: '%sylius_core.public_dir%'
+            directory_visibility: 'public'
 
 liip_imagine:
     loaders:
@@ -42,11 +33,7 @@ liip_imagine:
             filesystem:
                 data_root:
                     - "%kernel.project_dir%/public"
-
-sylius_ui:
-    events:
-        sylius.admin.layout.javascripts:
-            blocks:
-                version_script:
-                    template: "@BitBagSyliusCmsPlugin/Asset/_cmsVersionScript.html.twig"
-                    priority: 30
+        sylius_image:
+            filesystem:
+                data_root:
+                    - "%kernel.project_dir%/public"

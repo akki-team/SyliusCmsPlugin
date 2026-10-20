@@ -21,7 +21,7 @@ final class ImporterSectionsResolver implements ImporterSectionsResolverInterfac
 
     public function resolve(SectionableInterface $sectionable, ?string $sectionsRow): void
     {
-        if (null === $sectionsRow) {
+        if (null === $sectionsRow || '' === trim($sectionsRow)) {
             return;
         }
 

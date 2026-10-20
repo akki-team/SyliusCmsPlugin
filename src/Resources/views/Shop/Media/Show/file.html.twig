@@ -4,7 +4,7 @@
 
 <p>{{ bitbag_cms_render_content(media) }}</p>
 
-<a class="ui icon labeled primary button" href="{{ path('bitbag_sylius_cms_plugin_shop_media_download', {'code': media.code}) }}">
-    <i class="download icon"></i>
+<a class="btn btn-primary" href="{{ path('bitbag_sylius_cms_plugin_shop_media_download', {'code': media.code}) }}">
+    {{ ux_icon('tabler:download', {'class': 'icon'}) }}
     {{ 'bitbag_sylius_cms_plugin.ui.download'|trans }}
 </a>

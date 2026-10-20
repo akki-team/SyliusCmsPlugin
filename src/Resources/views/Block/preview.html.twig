@@ -1,13 +1,16 @@
-{% extends '@SyliusShop/layout.html.twig' %}
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
 {% block metatags %}
+    {{ parent() }}
     <base href="{{ app.request.getSchemeAndHttpHost() }}">
 {% endblock %}
 
 {% block content %}
-    <div class="column">
-        <div class="ui segment">
+    <div class="container my-5">
+        <div class="card">
+            <div class="card-body">
             {% include blockTemplate %}
+            </div>
         </div>
     </div>
 {% endblock %}

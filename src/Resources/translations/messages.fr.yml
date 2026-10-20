@@ -1,5 +1,9 @@
 bitbag_sylius_cms_plugin:
     ui:
+        page: Page
+        block: Bloc
+        section: Section
+        frequently_asked_question: Question fréquente
         blocks: Blocs
         pages: Pages
         content_management: Gestion de contenu

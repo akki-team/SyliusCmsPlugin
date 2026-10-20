@@ -21,7 +21,7 @@ final class ImporterChannelsResolver implements ImporterChannelsResolverInterfac
 
     public function resolve(ChannelsAwareInterface $channelsAware, ?string $channelsRow): void
     {
-        if (null === $channelsRow) {
+        if (null === $channelsRow || '' === trim($channelsRow)) {
             return;
         }
 

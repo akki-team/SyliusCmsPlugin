@@ -12,7 +12,7 @@ namespace BitBag\SyliusCmsPlugin\Repository;
 
 use BitBag\SyliusCmsPlugin\Entity\FrequentlyAskedQuestionInterface;
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 
 interface FrequentlyAskedQuestionRepositoryInterface extends RepositoryInterface
 {

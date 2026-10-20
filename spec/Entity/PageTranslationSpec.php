@@ -14,8 +14,8 @@ use BitBag\SyliusCmsPlugin\Entity\MediaInterface;
 use BitBag\SyliusCmsPlugin\Entity\PageTranslation;
 use BitBag\SyliusCmsPlugin\Entity\PageTranslationInterface;
 use PhpSpec\ObjectBehavior;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\TranslationInterface;
 
 final class PageTranslationSpec extends ObjectBehavior
 {

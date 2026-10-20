@@ -68,4 +68,4 @@ Feature: Displaying pages
         And this page also has "title" slug
         And this page also has "Lorem ipsum" content
         When I go to this page
-        Then I should see page title "Sylius"
+        Then I should see page title "United States"

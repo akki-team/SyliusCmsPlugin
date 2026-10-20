@@ -26,6 +26,7 @@
       "translations": {
         "en_US": {
           "@type": "BlockTranslation",
+          "@id": "@string@",
           "name": "translation_name_en_US",
           "content": "translation_content_en_US",
           "link": "translation_link_en_US"
@@ -61,36 +62,7 @@
       "translations": {
         "en_US": {
           "@type": "BlockTranslation",
-          "name": "translation_name_en_US",
-          "content": "translation_content_en_US",
-          "link": "translation_link_en_US"
-        }
-      },
-      "taxons": []
-    },
-    {
-      "@id": "/api/v2/shop/cms-plugin/blocks/@integer@",
-      "@type": "Block",
-      "id": "@integer@",
-      "code": "block3-code",
-      "enabled": false,
-      "sections": [
-        {
-          "@id": "/api/v2/shop/cms-plugin/sections/@integer@",
-          "@type": "Section",
-          "id": "@integer@",
-          "code": "section3-code"
-        }
-      ],
-      "products": [
-        "/api/v2/shop/products/MUG_SW3"
-      ],
-      "channels": [
-        "/api/v2/shop/channels/code"
-      ],
-      "translations": {
-        "en_US": {
-          "@type": "BlockTranslation",
+          "@id": "@string@",
           "name": "translation_name_en_US",
           "content": "translation_content_en_US",
           "link": "translation_link_en_US"
@@ -99,5 +71,5 @@
       "taxons": []
     }
   ],
-  "hydra:totalItems": 3
+  "hydra:totalItems": 2
 }

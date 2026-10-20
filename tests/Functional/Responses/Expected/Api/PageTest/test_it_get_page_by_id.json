@@ -8,6 +8,7 @@
   "translations": {
     "en_US": {
       "@type": "PageTranslation",
+      "@id": "@string@",
       "id": "@integer@",
       "slug": "translation1_slug_en_US",
       "image": null,

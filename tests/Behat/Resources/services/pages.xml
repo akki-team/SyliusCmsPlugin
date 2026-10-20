@@ -9,9 +9,9 @@
     <services>
         <defaults public="true" />
 
-        <service id="bitbag_sylius_cms_plugin.behat.page" class="FriendsOfBehat\PageObjectExtension\Page\Page">
-            <argument>behat.mink.default_session</argument>
-            <argument>behat.mink.parameters</argument>
+        <service id="bitbag_sylius_cms_plugin.behat.page" class="FriendsOfBehat\PageObjectExtension\Page\Page" abstract="true">
+            <argument type="service" id="behat.mink.default_session"/>
+            <argument type="service" id="behat.mink.parameters"/>
         </service>
     </services>
 </container>

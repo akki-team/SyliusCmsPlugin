@@ -9,6 +9,7 @@ bitbag_sylius_cms_plugin_admin_block:
         permission: true
         vars:
             all:
+                hook_prefix: 'bitbag_sylius_cms_plugin.admin.block'
                 header: bitbag_sylius_cms_plugin.ui.blocks_header
                 subheader: bitbag_sylius_cms_plugin.ui.blocks_subheader
                 templates:

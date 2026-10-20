@@ -12,6 +12,7 @@ namespace Tests\BitBag\SyliusCmsPlugin\Behat\Page\Admin\Block;
 
 use DMore\ChromeDriver\ChromeDriver;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
+use Sylius\Behat\Service\Helper\AutocompleteHelper;
 use Tests\BitBag\SyliusCmsPlugin\Behat\Behaviour\ContainsErrorTrait;
 use Webmozart\Assert\Assert;
 
@@ -53,29 +54,15 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         Assert::isInstanceOf($this->getDriver(), ChromeDriver::class);
 
-        $dropdown = $this->getElement('association_dropdown_section');
-        $dropdown->click();
-
         foreach ($sectionsNames as $sectionName) {
-            $dropdown->waitFor(10, function () use ($sectionName): bool {
-                return $this->hasElement('association_dropdown_section_item', [
-                    '%item%' => $sectionName,
-                ]);
-            });
-
-            $item = $this->getElement('association_dropdown_section_item', [
-                '%item%' => $sectionName,
-            ]);
-
-            $item->click();
+            (new AutocompleteHelper())->selectByName($this->getDriver(), $this->getElement('sections')->getXpath(), $sectionName);
         }
     }
 
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'association_dropdown_section' => '.field > label:contains("Sections") ~ .sylius-autocomplete',
-            'association_dropdown_section_item' => '.field > label:contains("Sections") ~ .sylius-autocomplete > div.menu > div.item:contains("%item%")',
+            'sections' => '#bitbag_sylius_cms_plugin_block_sections',
         ]);
     }
 }

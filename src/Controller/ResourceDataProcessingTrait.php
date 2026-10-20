@@ -6,7 +6,7 @@ namespace BitBag\SyliusCmsPlugin\Controller;
 
 use BitBag\SyliusCmsPlugin\Entity\MediaInterface;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,8 +16,8 @@ trait ResourceDataProcessingTrait
 {
     private function getResourceInterface(Request $request): object
     {
-        return null !== $request->get('id') && null !== $this->repository->find($request->get('id')) ?
-            $this->repository->find($request->get('id')) :
+        return null !== $request->attributes->get('id', $request->query->get('id')) && null !== $this->repository->find($request->attributes->get('id', $request->query->get('id'))) ?
+            $this->repository->find($request->attributes->get('id', $request->query->get('id'))) :
             $this->factory->createNew();
     }
 
@@ -48,13 +48,7 @@ trait ResourceDataProcessingTrait
     private function setPathForImageMediaType(MediaInterface $media): void
     {
         Assert::string($media->getPath());
-        if (!$this->cacheManager->isStored($media->getPath(), $this::FILTER)) {
-            $this->cacheManager->store($this->dataManager->find($this::FILTER, $media->getPath()), $media->getPath(), $this::FILTER);
-        }
-        $resolvedPath = $this->cacheManager->resolve($media->getPath(), $this::FILTER);
-        $fileContents = file_get_contents($resolvedPath);
-        Assert::string($fileContents);
-        $this->setFileContentsAsMediaPath($media, $fileContents);
+        $this->setFileContentsAsMediaPath($media, (string) $this->dataManager->find($this::FILTER, $media->getPath())->getContent());
     }
 
     private function setPathForNonImageMediaType(MediaInterface $media): void

@@ -30,40 +30,40 @@ final class ContentManagementMenuBuilderSpec extends ObjectBehavior
         $menuBuilderEvent->getMenu()->willReturn($menu);
         $menu->addChild('bitbag_cms')->willReturn($cmsRootMenuItem);
         $cmsRootMenuItem->setLabel('bitbag_sylius_cms_plugin.ui.cms')->willReturn($cmsRootMenuItem);
+        $cmsRootMenuItem->setLabelAttribute('icon', 'tabler:file-text')->shouldBeCalledTimes(2)->willReturn($cmsRootMenuItem);
         $cmsRootMenuItem
             ->addChild('blocks', ['route' => 'bitbag_sylius_cms_plugin_admin_block_index'])
             ->willReturn($cmsRootMenuItem)
         ;
         $cmsRootMenuItem->setLabel('bitbag_sylius_cms_plugin.ui.blocks')->willReturn($cmsRootMenuItem);
-        $cmsRootMenuItem->setLabelAttribute('icon', 'block layout')->shouldBeCalled();
+        $cmsRootMenuItem->setLabelAttribute('icon', 'tabler:layout-grid')->shouldBeCalled();
 
         $cmsRootMenuItem
             ->addChild('pages', ['route' => 'bitbag_sylius_cms_plugin_admin_page_index'])
             ->willReturn($cmsRootMenuItem)
         ;
         $cmsRootMenuItem->setLabel('bitbag_sylius_cms_plugin.ui.pages')->willReturn($cmsRootMenuItem);
-        $cmsRootMenuItem->setLabelAttribute('icon', 'sticky note')->shouldBeCalled();
 
         $cmsRootMenuItem
             ->addChild('faq', ['route' => 'bitbag_sylius_cms_plugin_admin_frequently_asked_question_index'])
             ->willReturn($cmsRootMenuItem)
         ;
         $cmsRootMenuItem->setLabel('bitbag_sylius_cms_plugin.ui.faq')->willReturn($cmsRootMenuItem);
-        $cmsRootMenuItem->setLabelAttribute('icon', 'help')->shouldBeCalled();
+        $cmsRootMenuItem->setLabelAttribute('icon', 'tabler:help')->shouldBeCalled();
 
         $cmsRootMenuItem
             ->addChild('sections', ['route' => 'bitbag_sylius_cms_plugin_admin_section_index'])
             ->willReturn($cmsRootMenuItem)
         ;
         $cmsRootMenuItem->setLabel('bitbag_sylius_cms_plugin.ui.sections')->willReturn($cmsRootMenuItem);
-        $cmsRootMenuItem->setLabelAttribute('icon', 'grid layout')->shouldBeCalled();
+        $cmsRootMenuItem->setLabelAttribute('icon', 'tabler:category')->shouldBeCalled();
 
         $cmsRootMenuItem
             ->addChild('media', ['route' => 'bitbag_sylius_cms_plugin_admin_media_index'])
             ->willReturn($cmsRootMenuItem)
         ;
         $cmsRootMenuItem->setLabel('bitbag_sylius_cms_plugin.ui.media')->willReturn($cmsRootMenuItem);
-        $cmsRootMenuItem->setLabelAttribute('icon', 'file')->shouldBeCalled();
+        $cmsRootMenuItem->setLabelAttribute('icon', 'tabler:photo')->shouldBeCalled();
 
         $this->buildMenu($menuBuilderEvent);
     }

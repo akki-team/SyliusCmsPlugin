@@ -22,7 +22,7 @@ sylius_grid:
                     path: enabled
                     sortable: ~
                     options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                        template: "@SyliusAdmin/shared/grid/field/boolean.html.twig"
                 sections:
                     type: twig
                     label: bitbag_sylius_cms_plugin.ui.sections

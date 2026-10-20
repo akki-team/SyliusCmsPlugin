@@ -11,8 +11,8 @@ declare(strict_types=1);
 namespace BitBag\SyliusCmsPlugin\Form\Type;
 
 use BitBag\SyliusCmsPlugin\Form\Type\Translation\PageTranslationType;
+use Sylius\Bundle\AdminBundle\Form\Type\ProductAutocompleteType;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
-use Sylius\Bundle\ProductBundle\Form\Type\ProductAutocompleteChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -32,9 +32,10 @@ final class PageType extends AbstractResourceType
             ->add('enabled', CheckboxType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.enabled',
             ])
-            ->add('products', ProductAutocompleteChoiceType::class, [
+            ->add('products', ProductAutocompleteType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.products',
                 'multiple' => true,
+                'required' => false,
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.images',
@@ -43,6 +44,7 @@ final class PageType extends AbstractResourceType
             ->add('sections', SectionAutocompleteChoiceType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.sections',
                 'multiple' => true,
+                'required' => false,
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.channels',

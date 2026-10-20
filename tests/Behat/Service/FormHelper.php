@@ -23,7 +23,7 @@ final class FormHelper
         try {
             $session->executeScript(
                 sprintf(
-                    "document.getElementById('%s').value = '%s';",
+                    "(function (select, value) { select.tomselect.addOption({value: value, text: value}); select.tomselect.addItem(value); })(document.getElementById('%s'), '%s');",
                     $id,
                     $value,
                 ),
@@ -32,7 +32,7 @@ final class FormHelper
         /** @noinspection PhpRedundantCatchClauseInspection */
         catch (UnsupportedDriverActionException $ex) {
             $session->getPage()
-                ->find('css', 'input#' . $id)
+                ->find('css', '#' . $id)
                 ->setValue($value)
             ;
         }

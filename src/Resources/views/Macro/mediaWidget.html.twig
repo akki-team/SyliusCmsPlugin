@@ -1,7 +1,9 @@
 {% macro mediaWidget(form) %}
-    <div class="ui upload box segment">
+    <div class="mb-3" data-bb-cms-media-widget>
         {{ form_row(form) }}
-        <a href="{{ path('bitbag_sylius_cms_plugin_admin_media_create') }}" target="_blank" class="ui button create_btn" type="button">{{ 'sylius.ui.create'|trans }}</a>
-        <div class="mediaPlacehod"></div>
+        <a href="{{ path('bitbag_sylius_cms_plugin_admin_media_create') }}" target="_blank" class="btn btn-outline-primary btn-sm">
+            {{ ux_icon('tabler:plus', {'class': 'icon'}) }}
+            {{ 'sylius.ui.create'|trans }}
+        </a>
     </div>
 {% endmacro %}

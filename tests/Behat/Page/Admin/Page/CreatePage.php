@@ -12,7 +12,7 @@ namespace Tests\BitBag\SyliusCmsPlugin\Behat\Page\Admin\Page;
 
 use DMore\ChromeDriver\ChromeDriver;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
-use Sylius\Behat\Service\SlugGenerationHelper;
+use Sylius\Behat\Service\Helper\AutocompleteHelper;
 use Tests\BitBag\SyliusCmsPlugin\Behat\Behaviour\ContainsErrorTrait;
 use Tests\BitBag\SyliusCmsPlugin\Behat\Service\FormHelper;
 use Webmozart\Assert\Assert;
@@ -41,7 +41,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
         $this->getDocument()->fillField('Name', $name);
 
         if ($this->getDriver() instanceof ChromeDriver) {
-            SlugGenerationHelper::waitForSlugGeneration($this->getSession(), $this->getElement('slug'));
+            $this->getDocument()->waitFor(10, fn (): bool => '' !== $this->getElement('slug')->getValue());
         }
     }
 
@@ -69,21 +69,8 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         Assert::isInstanceOf($this->getDriver(), ChromeDriver::class);
 
-        $dropdown = $this->getElement('association_dropdown_section');
-        $dropdown->click();
-
         foreach ($sectionsNames as $sectionName) {
-            $dropdown->waitFor(10, function () use ($sectionName): bool {
-                return $this->hasElement('association_dropdown_section_item', [
-                    '%item%' => $sectionName,
-                ]);
-            });
-
-            $item = $this->getElement('association_dropdown_section_item', [
-                '%item%' => $sectionName,
-            ]);
-
-            $item->click();
+            (new AutocompleteHelper())->selectByName($this->getDriver(), $this->getElement('sections')->getXpath(), $sectionName);
         }
     }
 
@@ -91,8 +78,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         return array_merge(parent::getDefinedElements(), [
             'slug' => '#bitbag_sylius_cms_plugin_page_translations_en_US_slug',
-            'association_dropdown_section' => '.field > label:contains("Sections") ~ .sylius-autocomplete',
-            'association_dropdown_section_item' => '.field > label:contains("Sections") ~ .sylius-autocomplete > div.menu > div.item:contains("%item%")',
+            'sections' => '#bitbag_sylius_cms_plugin_page_sections',
         ]);
     }
 }

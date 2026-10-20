@@ -1,0 +1,6 @@
+{% set product = hookable_metadata.context.product %}
+<div class="container my-5">
+    {{ render(path('bitbag_sylius_cms_plugin_shop_block_index_by_section_code', {'sectionCode': 'products', 'template': '@BitBagSyliusCmsPlugin/Shop/Block/index.html.twig'})) }}
+    {{ render(path('bitbag_sylius_cms_plugin_shop_block_index_by_product_code', {'productCode': product.code, 'template': '@BitBagSyliusCmsPlugin/Shop/Block/index.html.twig'})) }}
+    {{ bitbag_cms_render_product_pages(product) }}
+</div>

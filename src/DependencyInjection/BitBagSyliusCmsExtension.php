@@ -32,6 +32,21 @@ final class BitBagSyliusCmsExtension extends Extension implements PrependExtensi
     public function prepend(ContainerBuilder $container): void
     {
         $this->prependDoctrineMigrations($container);
+
+        /** @var array<string, class-string> $bundles */
+        $bundles = $container->getParameter('kernel.bundles');
+        if (isset($bundles['JMSSerializerBundle'])) {
+            $container->prependExtensionConfig('jms_serializer', [
+                'metadata' => [
+                    'directories' => [
+                        'bitbag-section' => [
+                            'namespace_prefix' => 'BitBag\\SyliusCmsPlugin',
+                            'path' => '@BitBagSyliusCmsPlugin/Resources/config/serializer',
+                        ],
+                    ],
+                ],
+            ]);
+        }
     }
 
     protected function getMigrationsNamespace(): string

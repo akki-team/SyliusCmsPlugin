@@ -22,6 +22,7 @@
   "translations": {
     "en_US": {
       "@type": "BlockTranslation",
+      "@id": "@string@",
       "name": "translation_name_en_US",
       "content": "translation_content_en_US",
       "link": "translation_link_en_US"

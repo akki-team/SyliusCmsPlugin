@@ -1,59 +1,43 @@
-{% macro translationForm(translations, resource) %}
-    {% import '@BitBagSyliusCmsPlugin/Macro/imageWidget.html.twig' as image %}
-    {% import '@BitBagSyliusCmsPlugin/Macro/mediaWidget.html.twig' as media %}
-    {% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+{% macro translationForm(translations, resource = null) %}
+    {% from _self import translationFormWithSlug %}
 
-    <div class="ui styled fluid accordion">
-        {% for locale, translationForm in translations %}
-            <div data-locale="{{ locale }}">
-                <div class="title{% if 0 == loop.index0 %} active{% endif %}">
-                    <i class="dropdown icon"></i>
-                    {{ flags.fromLocaleCode(locale) }} {{ locale|sylius_locale_name }}
-                </div>
-                <div class="ui content{% if 0 == loop.index0 %} active{% endif %}">
-                    {% for field in translationForm %}
-
-                        {% if 'bitbag_media_autocomplete_choice' in field.vars.block_prefixes %}
-                            {{ media.mediaWidget(field) }}
-                        {% elseif 'image' == field.vars.name %}
-                            {{ image.imageWidget(field) }}
-                        {% else %}
-                            {{ form_row(field) }}
-                        {% endif %}
-
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {{ translationFormWithSlug(translations, null, resource) }}
 {% endmacro %}
 
-{% macro translationFormWithSlug(translations, slugFieldTemplate, resource) %}
+{% macro translationFormWithSlug(translations, slugFieldTemplate = null, resource = null) %}
     {% import '@BitBagSyliusCmsPlugin/Macro/imageWidget.html.twig' as image %}
     {% import '@BitBagSyliusCmsPlugin/Macro/mediaWidget.html.twig' as media %}
-    {% import '@SyliusUi/Macro/flags.html.twig' as flags %}
 
-    <div class="ui styled fluid accordion" data-bb-target="cms-slug-update">
+    {% set accordion_id = 'bitbag-cms-translations-' ~ translations.vars.id %}
+    <div class="accordion" id="{{ accordion_id }}"{% if slugFieldTemplate is not null %} data-bb-target="cms-slug-update"{% endif %}>
         {% for locale, translationForm in translations %}
-            <div data-locale="{{ locale }}" data-bb-cms-wrapper>
-                <div class="title{% if 0 == loop.index0 %} active{% endif %}">
-                    <i class="dropdown icon"></i>
-                    {{ flags.fromLocaleCode(locale) }} {{ locale|sylius_locale_name }}
-                </div>
-                <div class="ui content{% if 0 == loop.index0 %} active{% endif %}">
-                    {% for field in translationForm %}
-
-                        {% if field.vars.name == 'slug' %}
-                            {% include slugFieldTemplate with { 'slugField': translationForm.slug, 'resource': resource } %}
-                        {% elseif 'bitbag_media_autocomplete_choice' in field.vars.block_prefixes %}
-                            {{ media.mediaWidget(field) }}
-                        {% elseif 'image' == field.vars.name %}
-                            {{ image.imageWidget(field) }}
-                        {% else %}
-                            {{ form_row(field) }}
-                        {% endif %}
-
-                    {% endfor %}
+            <div class="accordion-item" data-locale="{{ locale }}" data-bb-cms-wrapper>
+                <h2 class="accordion-header">
+                    <button
+                        class="accordion-button{% if not loop.first %} collapsed{% endif %}"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#{{ accordion_id }}-{{ locale }}"
+                        aria-expanded="{{ loop.first ? 'true' : 'false' }}"
+                        aria-controls="{{ accordion_id }}-{{ locale }}"
+                    >
+                        {{ locale|sylius_locale_name }}
+                    </button>
+                </h2>
+                <div id="{{ accordion_id }}-{{ locale }}" class="accordion-collapse collapse{% if loop.first %} show{% endif %}">
+                    <div class="accordion-body">
+                        {% for field in translationForm %}
+                            {% if slugFieldTemplate is not null and field.vars.name == 'slug' %}
+                                {% include slugFieldTemplate with { 'slugField': field, 'resource': resource } %}
+                            {% elseif 'bitbag_media_autocomplete_choice' in field.vars.block_prefixes %}
+                                {{ media.mediaWidget(field) }}
+                            {% elseif 'image' == field.vars.name %}
+                                {{ image.imageWidget(field) }}
+                            {% else %}
+                                {{ form_row(field) }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         {% endfor %}

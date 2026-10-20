@@ -13,23 +13,20 @@ namespace Tests\BitBag\SyliusCmsPlugin\Functional\Fixture;
 use BitBag\SyliusCmsPlugin\Fixture\BlockFixture;
 use BitBag\SyliusCmsPlugin\Fixture\Factory\FixtureFactoryInterface;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class BlockFixtureTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_are_optional(): void
     {
         $this->assertConfigurationIsValid([[]], 'custom');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_enabled_is_optional_but_must_be_boolean(): void
     {
         $this->assertConfigurationIsValid([
@@ -53,9 +50,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.enabled');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_remove_existing_is_optional_but_must_be_boolean(): void
     {
         $this->assertConfigurationIsValid([
@@ -79,9 +74,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.remove_existing');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_number_is_optional_but_must_be_integer(): void
     {
         $this->assertConfigurationIsValid([
@@ -105,9 +98,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.number');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_last_four_products_is_optional_but_must_be_boolean(): void
     {
         $this->assertConfigurationIsValid([
@@ -131,9 +122,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.last_four_products');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_products_is_optional_but_must_be_integer(): void
     {
         $this->assertConfigurationIsValid([
@@ -157,9 +146,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.products');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_product_codes_is_optional_but_must_be_array(): void
     {
         $this->assertConfigurationIsValid([
@@ -183,9 +170,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.productCodes');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_translations_is_optional_but_must_be_array(): void
     {
         $this->assertConfigurationIsValid([
@@ -217,9 +202,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.translations');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_sections_is_optional_but_must_be_scalar_array(): void
     {
         $this->assertConfigurationIsValid([
@@ -263,9 +246,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.sections');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_may_contain_name(): void
     {
         $this->assertConfigurationIsValid([
@@ -297,9 +278,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.translations.*.name');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_may_contain_content(): void
     {
         $this->assertConfigurationIsValid([
@@ -331,9 +310,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.translations.*.content');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_may_contain_link(): void
     {
         $this->assertConfigurationIsValid([
@@ -365,9 +342,7 @@ final class BlockFixtureTest extends TestCase
         ], 'custom.*.translations.*.link');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function custom_may_contain_image_path(): void
     {
         $this->assertConfigurationIsValid([

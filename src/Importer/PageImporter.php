@@ -21,7 +21,7 @@ use BitBag\SyliusCmsPlugin\Resolver\MediaProviderResolverInterface;
 use BitBag\SyliusCmsPlugin\Resolver\ResourceResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Webmozart\Assert\Assert;
@@ -69,7 +69,7 @@ final class PageImporter extends AbstractImporter implements PageImporterInterfa
             $url = $this->getTranslatableColumnValue(self::IMAGE_COLUMN, $locale, $row);
             $imageCode = $this->getTranslatableColumnValue(self::IMAGE_CODE_COLUMN, $locale, $row);
 
-            if (null !== $url) {
+            if (null !== $url && '' !== $url) {
                 $this->resolveImage($page, $url, $locale, $imageCode);
             }
         }

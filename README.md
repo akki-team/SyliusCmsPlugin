@@ -1,3 +1,6 @@
+> **akki-team fork, version 5:** BitBag CMS 4.4 for Sylius 2.3, Symfony 7.4 and PHP 8.3 to 8.5, with the same tables,
+> namespace and service identifiers. See [UPGRADE-5.0.md](UPGRADE-5.0.md) and the [installation guide](doc/installation.md).
+
 # [![](https://bitbag.io/wp-content/uploads/2021/01/CMS.png)](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_cms)
 
 # BitBag SyliusCMSPlugin

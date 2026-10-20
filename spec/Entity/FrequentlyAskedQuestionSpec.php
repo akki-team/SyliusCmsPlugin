@@ -14,7 +14,7 @@ use BitBag\SyliusCmsPlugin\Entity\FrequentlyAskedQuestion;
 use BitBag\SyliusCmsPlugin\Entity\FrequentlyAskedQuestionInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 
 final class FrequentlyAskedQuestionSpec extends ObjectBehavior
 {
