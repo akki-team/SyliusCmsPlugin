@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1 (akki-team fork)
+
+**Changed:**
+
+- `instaclick/php-webdriver` moved from `require` to `require-dev`: no plugin code uses it, applications no longer install it
+
 ## 5.0.0 (akki-team fork)
 
 Sylius 2.3 / Symfony 7.4 / PHP 8.5 support, without data migration. See [UPGRADE-5.0.md](UPGRADE-5.0.md).
