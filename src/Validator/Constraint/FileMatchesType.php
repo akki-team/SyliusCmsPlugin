@@ -11,18 +11,21 @@ declare(strict_types=1);
 namespace BitBag\SyliusCmsPlugin\Validator\Constraint;
 
 use BitBag\SyliusCmsPlugin\Validator\FileMatchesTypeValidator;
+use Symfony\Component\Validator\Attribute\HasNamedArguments;
 use Symfony\Component\Validator\Constraint;
 
 final class FileMatchesType extends Constraint
 {
-    /** @var string */
-    public $messageImage = 'This file cannot be uploaded as an image';
-
-    /** @var string */
-    public $messageVideo = 'This file cannot be uploaded as an video';
-
-    /** @var string */
-    public $field;
+    #[HasNamedArguments]
+    public function __construct(
+        public string $messageImage = 'This file cannot be uploaded as an image',
+        public string $messageVideo = 'This file cannot be uploaded as an video',
+        public ?string $field = null,
+        ?array $groups = null,
+        mixed $payload = null,
+    ) {
+        parent::__construct(null, $groups, $payload);
+    }
 
     public function getTargets(): string
     {
