@@ -1,46 +1,41 @@
-<?xml version="1.0" ?>
-<resources xmlns="https://api-platform.com/schema/metadata"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="https://api-platform.com/schema/metadata https://api-platform.com/schema/metadata/metadata-2.0.xsd"
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<resources
+    xmlns="https://api-platform.com/schema/metadata/resources-3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://api-platform.com/schema/metadata/resources-3.0 https://api-platform.com/schema/metadata/resources-3.0.xsd"
 >
     <resource class="%bitbag_sylius_cms_plugin.model.page.class%" shortName="Page">
-        <attribute name="normalization_context">
-            <attribute name="groups">
-                <attribute>shop:cms:read</attribute>
-            </attribute>
-        </attribute>
-
-        <attribute name="denormalizationContext">
-            <attribute name="groups">
-                <attribute>shop:cms:write</attribute>
-            </attribute>
-        </attribute>
-
-        <attribute name="validation_groups">sylius</attribute>
-
-        <collectionOperations>
-            <collectionOperation name="shop_get_page">
-                <attribute name="method">GET</attribute>
-                <attribute name="path">/shop/cms-plugin/pages</attribute>
-            </collectionOperation>
-
-        </collectionOperations>
-
-        <itemOperations>
-            <itemOperation name="shop_get_page">
-                <attribute name="method">GET</attribute>
-                <attribute name="path">/shop/cms-plugin/pages/{id}</attribute>
-            </itemOperation>
-        </itemOperations>
-
-        <property name="id" identifier="true" writable="false"/>
-        <property name="code" identifier="false" writable="false"/>
-        <property name="enabled" identifier="false" writable="false"/>
-        <property name="createdAt" identifier="false" writable="false"/>
-        <property name="updatedAt" identifier="false" writable="false"/>
-        <property name="publishAt" identifier="false" writable="false"/>
-        <property name="products" identifier="false" writable="false"/>
-        <property name="sections" identifier="false" writable="false"/>
-        <property name="channels" identifier="false" writable="false"/>
+        <normalizationContext>
+            <values>
+                <value name="groups">
+                    <values>
+                        <value>shop:cms:read</value>
+                    </values>
+                </value>
+            </values>
+        </normalizationContext>
+        <denormalizationContext>
+            <values>
+                <value name="groups">
+                    <values>
+                        <value>shop:cms:write</value>
+                    </values>
+                </value>
+            </values>
+        </denormalizationContext>
+        <validationContext>
+            <values>
+                <value name="groups">
+                    <values>
+                        <value>sylius</value>
+                    </values>
+                </value>
+            </values>
+        </validationContext>
+        <operations>
+            <operation name="shop_get_page_collection" class="ApiPlatform\Metadata\GetCollection" uriTemplate="/shop/cms-plugin/pages"/>
+            <operation name="shop_get_page" class="ApiPlatform\Metadata\Get" uriTemplate="/shop/cms-plugin/pages/{id}"/>
+        </operations>
     </resource>
 </resources>

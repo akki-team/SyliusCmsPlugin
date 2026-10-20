@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<properties
+    xmlns="https://api-platform.com/schema/metadata/properties-3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://api-platform.com/schema/metadata/properties-3.0 https://api-platform.com/schema/metadata/properties-3.0.xsd"
+>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="id" identifier="true" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="code" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="type" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="path" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="mimeType" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="enabled" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="width" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="height" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="saveWithOriginalName" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="sections" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="products" identifier="false" writable="false"/>
+    <property resource="%bitbag_sylius_cms_plugin.model.media.class%" name="channels" identifier="false" writable="false"/>
+</properties>
