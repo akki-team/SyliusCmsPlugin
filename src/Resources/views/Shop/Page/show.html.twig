@@ -1,4 +1,4 @@
-{% extends '@SyliusShop/layout.html.twig' %}
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
 {% set published = (page.publishAt is not null and page.publishAt|date("Y-m-d H:i:s") < "now"|date("Y-m-d H:i:s") or page.publishAt is null) %}
 
@@ -11,6 +11,7 @@
 {%- endblock -%}
 
 {% block metatags %}
+    {{ parent() }}
     {% if published == true %}
         {% if page.metaKeywords is not empty %}
             <meta name="keywords" content="{{ page.metaKeywords }}"/>
@@ -20,42 +21,45 @@
         {% endif %}
     {% endif %}
 {% endblock %}
+
 {% block content %}
-    {% if published == true %}
-        <div class="ui breadcrumb">
-            <a href="{{ path('sylius_shop_homepage') }}" class="section">{{ 'sylius.ui.home'|trans }}</a>
-            <div class="divider"> /</div>
-            <div class="active section">{{ page.breadcrumb }}</div>
-        </div>
-        <div class="ui segment">
-            <h1 class="ui dividing header bitbag-page-name">{{ page.name }}</h1>
+    <div class="container my-5">
+        {% if published == true %}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('sylius_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ page.breadcrumb }}</li>
+                </ol>
+            </nav>
 
-            <div class="ui grid center aligned">
-                <div class="eight wide column">
-                    {% if page.image %}
-                        <img class="page-image ui fluid image" src="{{ page.image.path }}" alt="">
-                    {% endif %}
+            <h1 class="border-bottom pb-3 mb-4 bitbag-page-name">{{ page.name }}</h1>
+
+            {% if page.image %}
+                <div class="row justify-content-center mb-4">
+                    <div class="col-12 col-md-8">
+                        <img class="page-image img-fluid" src="{{ page.image.path }}" alt="">
+                    </div>
                 </div>
-            </div>
-
-            <div class="ui hidden divider"></div>
+            {% endif %}
 
             <div class="bitbag-page-content">{{ bitbag_cms_render_content(page) }}</div>
-            <div class="ui dividing header"></div>
+            <hr>
             <div class="bitbag-page-sections">
                 {% include '@BitBagSyliusCmsPlugin/Shop/Page/Show/_sections.html.twig' %}
             </div>
-        </div>
-        {% if page.products|length > 0 %}
-            <h2>
-                {{ 'bitbag_sylius_cms_plugin.ui.page_related_products'|trans }}
-            </h2>
-            <div class="bitbag-page-products">
-                {% include '@SyliusShop/Product/_horizontalList.html.twig' with {'products': page.products} %}
-            </div>
-        {% endif %}
-    {% else %}
-        {% include '@BitBagSyliusCmsPlugin/Shop/Page/Error/_notPublished.html.twig' with {'publishAt': page.publishAt} %}
-    {% endif %}
 
+            {% if page.products|length > 0 %}
+                <h2 class="mt-5">
+                    {{ 'bitbag_sylius_cms_plugin.ui.page_related_products'|trans }}
+                </h2>
+                <div class="bitbag-page-products products-grid">
+                    {% for product in page.products %}
+                        <div>{{ component('sylius_shop:product:card', { product: product, template: '@SyliusShop/product/common/card.html.twig' }) }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% else %}
+            {% include '@BitBagSyliusCmsPlugin/Shop/Page/Error/_notPublished.html.twig' with {'publishAt': page.publishAt} %}
+        {% endif %}
+    </div>
 {% endblock %}

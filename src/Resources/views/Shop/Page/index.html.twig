@@ -1,42 +1,40 @@
-{% import '@SyliusUi/Macro/pagination.html.twig' as pagination %}
-{% import '@SyliusUi/Macro/messages.html.twig' as messages %}
+{% import '@SyliusShop/shared/macro/pagination.html.twig' as pagination %}
 
-{% extends '@SyliusShop/layout.html.twig' %}
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
 {% block content %}
-    {% if resources.data|length > 0 %}
-        {{ render(path('bitbag_sylius_cms_plugin_shop_section_show', {'code' : app.request.get('sectionCode'), 'template' : '@BitBagSyliusCmsPlugin/Shop/Page/Index/_section.html.twig'})) }}
-    {% endif %}
-    <div class="ui stackable grid segment">
-        <div class="ui sixteen wide column">
+    {% set pages = resources.data ?? resources %}
+    <div class="container my-5">
+        {% if pages|length > 0 %}
+            {{ render(path('bitbag_sylius_cms_plugin_shop_section_show', {'code' : app.request.attributes.get('sectionCode'), 'template' : '@BitBagSyliusCmsPlugin/Shop/Page/Index/_section.html.twig'})) }}
+        {% endif %}
 
-            {% if resources.data|length > 0 %}
-                <div class="ui one column stackable grid" id="bitbag-pages">
-                    {% for page in resources.data %}
-                        <div class="item bitbag-page">
-                            <a href="{{ path('bitbag_sylius_cms_plugin_shop_page_show', {'slug' : page.slug}) }}">
+        {% if pages|length > 0 %}
+            <div class="d-flex flex-column gap-4" id="bitbag-pages">
+                {% for page in pages %}
+                    <div class="bitbag-page">
+                        <a class="d-flex gap-3 text-decoration-none" href="{{ path('bitbag_sylius_cms_plugin_shop_page_show', {'slug' : page.slug}) }}">
+                            {% if page.image %}
+                                <img class="img-fluid flex-shrink-0" src="{{ page.image.path|imagine_filter(filter|default('sylius_small')) }}" alt="">
+                            {% endif %}
+                            <div>
+                                <h3 class="h5">{{ page.name }}</h3>
+                                <p class="mb-0">
+                                    {{ page.content|striptags|length > 200 ? page.content|striptags|slice(0, 200) ~ '...' : page.content|striptags }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
 
-                                <div class="content">
-
-                                     {% if page.image %}
-                                        <img class="ui left floated image" src="{{ page.image.path|imagine_filter(filter|default('sylius_small')) }}" alt="">
-                                    {% endif %}
-
-                                    <h3>{{ page.name }}</h3>
-                                    <p>
-                                        {{ page.content|striptags|length > 200 ? page.content|striptags|slice(0, 200) ~ '...' : page.content|striptags }}
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
+            {% if pages.haveToPaginate is defined %}
+                <div class="mt-4">
+                    {{ pagination.simple(pages, null) }}
                 </div>
-                <div class="ui hidden divider"></div>
-
-                {{ pagination.simple(resources.data) }}
-            {% else %}
-                {{ messages.info('sylius.ui.no_results_to_display') }}
             {% endif %}
-        </div>
+        {% else %}
+            <div class="alert alert-info">{{ 'sylius.ui.no_results_to_display'|trans }}</div>
+        {% endif %}
     </div>
 {% endblock %}

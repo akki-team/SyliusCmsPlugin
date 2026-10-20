@@ -2,27 +2,28 @@
     <h2>
         {{ column.section.name }}
     </h2>
-    <div class="ui divider"></div>
+    <hr>
 
-    <div class="ui stackable two column grid">
+    <div class="row g-4 mb-5">
         {% for row in column %}
             {% if loop.first == false %}
                 {% set page = row %}
 
-                <div class="column">
-                    <div class="ui fluid segment column">
+                <div class="col-12 col-md-6">
+                    <div class="card h-100">
                         {% if page.image %}
-                            <img class="ui fluid image" src="{{ page.image.path }}" alt="{{ page.nameWhenLinked }}">
+                            <img class="card-img-top" src="{{ page.image.path }}" alt="{{ page.nameWhenLinked }}">
                         {% endif %}
+                        <div class="card-body">
+                            <h3 class="h5">
+                                {{ page.nameWhenLinked }}
+                            </h3>
+                            <p>
+                                {{ page.descriptionWhenLinked }}
+                            </p>
 
-                        <h3>
-                            {{ page.nameWhenLinked }}
-                        </h3>
-                        <p>
-                            {{ page.descriptionWhenLinked }}
-                        </p>
-
-                        <a href="{{ path('bitbag_sylius_cms_plugin_shop_page_show', {'slug': page.slug}) }}">{{ 'bitbag_sylius_cms_plugin.ui.read_more'|trans }}</a>
+                            <a href="{{ path('bitbag_sylius_cms_plugin_shop_page_show', {'slug': page.slug}) }}">{{ 'bitbag_sylius_cms_plugin.ui.read_more'|trans }}</a>
+                        </div>
                     </div>
                 </div>
             {% endif %}
