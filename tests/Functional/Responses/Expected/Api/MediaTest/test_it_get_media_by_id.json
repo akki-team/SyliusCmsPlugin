@@ -28,6 +28,7 @@
   "translations": {
     "en_US": {
       "@type": "MediaTranslation",
+      "@id": "@string@",
       "name": "translation_name_en_US",
       "content": "translation_content_en_US",
       "alt": null,

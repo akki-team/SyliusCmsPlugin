@@ -12,6 +12,7 @@
   "translations": {
     "en_US": {
       "@type": "FrequentlyAskedQuestionTranslation",
+      "@id": "@string@",
       "question": "How many days there are in one year?",
       "answer": "It may vary depending on whether you are working on a new question"
     }

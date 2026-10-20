@@ -132,24 +132,19 @@ imports:
 ```
 
 ## Testing & running the plugin
+
+The plugin runs on [`sylius/test-application`](https://github.com/Sylius/TestApplication), configured in `tests/TestApplication`.
+
 ```bash
 $ composer install
-$ cd tests/Application
-```
-Copy file `package.json.~1.XX.0.dist` to `package.json` where `~1.XX.0` is the Sylius version you are using.
-
-```bash
-$ cp package.json.~1.12.0.dist package.json
-```
-
-```bash
-$ yarn install
-$ yarn encore dev
-$ APP_ENV=test bin/console assets:install
-$ APP_ENV=test bin/console doctrine:schema:create
-$ APP_ENV=test symfony server:start --port=8080 -d
-$ cd ../..
+$ (cd vendor/sylius/test-application && yarn install && yarn build)
+$ APP_ENV=test vendor/bin/console ckeditor:install --clear=drop
+$ APP_ENV=test vendor/bin/console assets:install
+$ APP_ENV=test vendor/bin/console doctrine:database:create
+$ APP_ENV=test vendor/bin/console doctrine:schema:create
+$ APP_ENV=test symfony server:start --dir=vendor/sylius/test-application/public --port=8080 -d
 $ open http://localhost:8080
-$ vendor/bin/behat
 $ vendor/bin/phpspec run
+$ vendor/bin/phpunit
+$ vendor/bin/behat
 ```
