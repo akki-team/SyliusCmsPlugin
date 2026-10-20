@@ -4,7 +4,6 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: BitBag\SyliusCmsPlugin\Entity\Block
-                interface: BitBag\SyliusCmsPlugin\Entity\BlockInterface
                 form: BitBag\SyliusCmsPlugin\Form\Type\BlockType
                 repository: BitBag\SyliusCmsPlugin\Repository\BlockRepository
                 controller: BitBag\SyliusCmsPlugin\Controller\BlockController
@@ -12,4 +11,3 @@ sylius_resource:
             translation:
                 classes:
                     model: BitBag\SyliusCmsPlugin\Entity\BlockTranslation
-                    interface: BitBag\SyliusCmsPlugin\Entity\BlockTranslationInterface

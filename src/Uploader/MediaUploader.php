@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace BitBag\SyliusCmsPlugin\Uploader;
 
 use BitBag\SyliusCmsPlugin\Entity\MediaInterface;
-use Gaufrette\Filesystem;
+use Sylius\Component\Core\Filesystem\Adapter\FilesystemAdapterInterface;
 use Webmozart\Assert\Assert;
 
 final class MediaUploader implements MediaUploaderInterface
 {
-    public function __construct(private Filesystem $filesystem)
+    public function __construct(private FilesystemAdapterInterface $filesystem)
     {
     }
 
@@ -69,7 +69,9 @@ final class MediaUploader implements MediaUploaderInterface
     public function remove(string $path): bool
     {
         if ($this->filesystem->has($path)) {
-            return $this->filesystem->delete($path);
+            $this->filesystem->delete($path);
+
+            return true;
         }
 
         return false;
