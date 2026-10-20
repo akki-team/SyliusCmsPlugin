@@ -1,0 +1,96 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.base#javascripts':
+            bitbag_cms_version_script:
+                template: '@BitBagSyliusCmsPlugin/Asset/_cmsVersionScript.html.twig'
+                priority: 30
+
+        'bitbag_sylius_cms_plugin.admin.block.index.content.header.title_block':
+            title:
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: 'tabler:layout-grid'
+                    subheader: 'bitbag_sylius_cms_plugin.ui.blocks_subheader'
+                priority: 100
+
+        'bitbag_sylius_cms_plugin.admin.block.create.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.block.update.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.page.index.content.header.title_block':
+            title:
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: 'tabler:file-text'
+                    subheader: 'bitbag_sylius_cms_plugin.ui.pages_subheader'
+                priority: 100
+
+        'bitbag_sylius_cms_plugin.admin.page.create.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.page.update.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.frequently_asked_question.index.content.header.title_block':
+            title:
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: 'tabler:help'
+                    subheader: 'bitbag_sylius_cms_plugin.ui.faq_subheader'
+                priority: 100
+
+        'bitbag_sylius_cms_plugin.admin.frequently_asked_question.create.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.frequently_asked_question.update.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.section.index.content.header.title_block':
+            title:
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: 'tabler:category'
+                    subheader: 'bitbag_sylius_cms_plugin.ui.sections_subheader'
+                priority: 100
+
+        'bitbag_sylius_cms_plugin.admin.section.create.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.section.update.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.media.index.content.header.title_block':
+            title:
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig'
+                configuration:
+                    icon: 'tabler:photo'
+                    subheader: 'bitbag_sylius_cms_plugin.ui.media_subheader'
+                priority: 100
+
+        'bitbag_sylius_cms_plugin.admin.media.create.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0
+
+        'bitbag_sylius_cms_plugin.admin.media.update.content.form.sections':
+            general:
+                template: '@BitBagSyliusCmsPlugin/CrudUi/_formSection.html.twig'
+                priority: 0

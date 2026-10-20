@@ -37,40 +37,39 @@ export class HandlePreview {
     }
 
     _$_CKEDITOR_MODAL_SHOW() {
-        const root = $(`[${this.modalSelector}]`);
-        return root.modal('show');
+        return window.bootstrap.Modal.getOrCreateInstance(this.modal).show();
     }
 
     _$_CKEDITOR_UPDATE_INSTANCES() {
-        [...CKEDITOR.instances].forEach((instance) => instance.updateElement());
+        Object.values(window.CKEDITOR?.instances ?? {}).forEach((instance) => instance.updateElement());
     }
 
     _resourcePreview() {
         this.button.addEventListener('click', (e) => {
             e.preventDefault();
 
-            this._$_CKEDITOR_UPDATE_INSTANCES;
+            this._$_CKEDITOR_UPDATE_INSTANCES();
             this._createPreview();
             this._$_CKEDITOR_MODAL_SHOW();
         });
         document.querySelector(`[${this.channelSelector}]`).addEventListener('change', (e) => {
             e.preventDefault();
 
-            this._$_CKEDITOR_UPDATE_INSTANCES;
+            this._$_CKEDITOR_UPDATE_INSTANCES();
             this._createPreview();
             this._$_CKEDITOR_MODAL_SHOW();
         });
         document.querySelector(`[${this.localeSelector}]`).addEventListener('change', (e) => {
             e.preventDefault();
 
-            this._$_CKEDITOR_UPDATE_INSTANCES;
+            this._$_CKEDITOR_UPDATE_INSTANCES();
             this._createPreview();
             this._$_CKEDITOR_MODAL_SHOW();
         });
     }
 
     async _createPreview() {
-        this.modal.querySelector('.ui.loadable').classList.add('loading');
+        this.modal.querySelector('[data-bb-cms-preview-loader]').classList.remove('d-none');
         this.modal.disabled = true;
 
         const channelCode = document.querySelector(`[${this.channelSelector}]`).value;
@@ -97,7 +96,7 @@ export class HandlePreview {
             console.error(`BitBag CMS Plugin - HandlePreview class error : ${error}`);
             triggerCustomEvent(this.modal, 'cms.create.preview.error', error);
         } finally {
-            this.modal.querySelector('.ui.loadable').classList.remove('loading');
+            this.modal.querySelector('[data-bb-cms-preview-loader]').classList.add('d-none');
             this.modal.disabled = false;
             triggerCustomEvent(this.modal, 'cms.create.preview.end');
         }

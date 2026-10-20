@@ -1,17 +1,19 @@
-{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+{% from '@BitBagSyliusCmsPlugin/Macro/translationForm.html.twig' import translationForm %}
 
 {{ form_errors(form) }}
 
-<div class="ui two column stackable grid">
-    <div class="column">
-        <div class="ui segment">
-            {{ form_row(form.code) }}
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                {{ form_row(form.code) }}
+            </div>
         </div>
     </div>
 </div>
 
-<div class="ui one column stackable grid">
-    <div class="column">
+<div class="card mb-3">
+    <div class="card-body">
         {{ translationForm(form.translations) }}
     </div>
 </div>

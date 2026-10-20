@@ -5,26 +5,33 @@
 
 {{ form_errors(form) }}
 
-<div class="ui two column stackable grid" data-bb-target="cms-handle-preview">
-    <div class="column">
-        <div class="ui segment">
-            {{ form_row(form.code) }}
-            {{ form_row(form.enabled) }}
-            {{ form_row(form.products) }}
-            {{ form_row(form.sections) }}
-            {{ form_row(form.channels) }}
-            {{ form_row(form.publishAt) }}
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                {{ form_row(form.code) }}
+                {{ form_row(form.enabled) }}
+                {{ form_row(form.products) }}
+                {{ form_row(form.sections) }}
+                {{ form_row(form.channels) }}
+                {{ form_row(form.publishAt) }}
 
-            <a href="#" data-bb-cms-preview-btn class="ui labeled button icon primary bitbag-cms-resource-preview" data-url="{{ path('bitbag_sylius_cms_plugin_admin_page_preview', {'id': form.vars.data.id}) }}">
-                <i class="eye icon"></i>
+            <button
+                type="button"
+                class="btn btn-primary bitbag-cms-resource-preview"
+                data-url="{{ path('bitbag_sylius_cms_plugin_admin_page_preview', {'id': form.vars.data.id}) }}"
+                data-bb-cms-preview-btn
+            >
+                {{ ux_icon('tabler:eye', {'class': 'icon'}) }}
                 {{ 'bitbag_sylius_cms_plugin.ui.preview'|trans }}
-            </a>
+            </button>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="ui one column stackable grid">
-    <div class="column" id="bitbag-block-image">
-        {{ translationFormWithSlug(form.translations, '@BitBagSyliusCmsPlugin/Page/Crud/_slugField.html.twig', page) }}
+<div class="card mb-3" id="bitbag-block-image">
+    <div class="card-body">
+        {{ translationFormWithSlug(form.translations, '@BitBagSyliusCmsPlugin/Page/Crud/_slugField.html.twig', resource) }}
     </div>
 </div>

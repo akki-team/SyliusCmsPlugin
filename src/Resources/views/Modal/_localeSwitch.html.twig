@@ -2,14 +2,14 @@
     {% set selected = locales|first %}
     {% set code = app.request.query.get('locale', selected.code) %}
 
-    <div class="field">
-        <label for="bitbag_sylius_cms_plugin_locale_switch" class="required">
+    <div>
+        <label for="bitbag_sylius_cms_plugin_locale_switch" class="form-label required">
             {{ 'sylius.ui.locale'|trans }}
         </label>
-        <select id="bitbag_sylius_cms_plugin_locale_switch" data-bb-cms-locale class=" ui dropdown">
-            {% for locale in locales %}
-                <option value="{{ locale.code }}" {{ locale.code is same as(code) ? 'selected' : '' }}>
-                    {{ locale.name }}
+        <select id="bitbag_sylius_cms_plugin_locale_switch" data-bb-cms-locale class="form-select">
+            {% for item in locales %}
+                <option value="{{ item.code }}" {{ item.code is same as(code) ? 'selected' : '' }}>
+                    {{ item.name }}
                 </option>
             {% endfor %}
         </select>

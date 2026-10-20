@@ -1,11 +1,23 @@
-<div class="ui longer fullscreen modal scrolling" data-bb-cms-preview-modal data-bb-target="cms-handle-preview" id="bitbag-cms-resource-preview-modal">
-    <div class="ui header form">
-        <div class="two fields">
-            {{ render(url('sylius_admin_partial_channel_index', {'template': '@BitBagSyliusCmsPlugin/Modal/_channelSwitch.html.twig'})) }}
-            {{ render(url('bitbag_sylius_cms_plugin_admin_partial_locale_index', {'template': '@BitBagSyliusCmsPlugin/Modal/_localeSwitch.html.twig'})) }}
+<div class="modal modal-blur fade" tabindex="-1" data-bb-cms-preview-modal data-bb-target="cms-handle-preview" id="bitbag-cms-resource-preview-modal" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row w-100 g-3">
+                    <div class="col-12 col-md-6">
+                        {{ render(url('bitbag_sylius_cms_plugin_admin_partial_channel_index', {'template': '@BitBagSyliusCmsPlugin/Modal/_channelSwitch.html.twig'})) }}
+                    </div>
+                    <div class="col-12 col-md-6">
+                        {{ render(url('bitbag_sylius_cms_plugin_admin_partial_locale_index', {'template': '@BitBagSyliusCmsPlugin/Modal/_localeSwitch.html.twig'})) }}
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'sylius.ui.close'|trans }}"></button>
+            </div>
+            <div class="modal-body p-0 position-relative" data-bb-cms-preview-body>
+                <div class="position-absolute top-50 start-50 translate-middle d-none" data-bb-cms-preview-loader>
+                    <div class="spinner-border" role="status"></div>
+                </div>
+                <iframe class="w-100 h-100 border-0"></iframe>
+            </div>
         </div>
-    </div>
-    <div class="content ui loadable form loading">
-        <iframe frameBorder="0"></iframe>
     </div>
 </div>

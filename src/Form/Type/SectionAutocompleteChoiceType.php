@@ -10,30 +10,28 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCmsPlugin\Form\Type;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\ResourceAutocompleteChoiceType;
+use Sylius\Bundle\AdminBundle\Form\Type\TranslatableAutocompleteType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
 
+#[AsEntityAutocompleteField(
+    alias: 'bitbag_sylius_cms_plugin_section',
+    route: 'sylius_admin_entity_autocomplete',
+)]
 final class SectionAutocompleteChoiceType extends AbstractType
 {
+    public function __construct(private readonly string $sectionClass)
+    {
+    }
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'resource' => 'bitbag_sylius_cms_plugin.section',
-            'choice_name' => 'name',
+            'class' => $this->sectionClass,
+            'choice_label' => 'name',
             'choice_value' => 'code',
         ]);
-    }
-
-    public function buildView(
-        FormView $view,
-        FormInterface $form,
-        array $options,
-    ): void {
-        $view->vars['remote_criteria_type'] = 'contains';
-        $view->vars['remote_criteria_name'] = 'phrase';
     }
 
     public function getBlockPrefix(): string
@@ -43,6 +41,6 @@ final class SectionAutocompleteChoiceType extends AbstractType
 
     public function getParent(): string
     {
-        return ResourceAutocompleteChoiceType::class;
+        return TranslatableAutocompleteType::class;
     }
 }

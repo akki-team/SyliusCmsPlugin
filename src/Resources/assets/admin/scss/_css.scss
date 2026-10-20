@@ -1,22 +1,11 @@
-#bitbag-cms-resource-preview-modal {
-    height: 100%;
+#bitbag-cms-resource-preview-modal .modal-body {
+    min-height: 80vh;
 }
 
 #bitbag-cms-resource-preview-modal iframe {
     width: 100%;
-    height: 100vh;
-}
-
-#bitbag-cms-resource-preview-modal .ui.header {
-    padding-bottom: 0;
-}
-
-.bitbag-cms-import .ui.action.input input[type='file'] {
-    display: none;
-}
-
-.bitbag-cms-import .ui.action.input input[type='text'] {
-    width: auto;
+    height: 100%;
+    min-height: 80vh;
 }
 
 .media-list {
@@ -32,74 +21,29 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    position: relative !important;
+    position: relative;
 }
 
 .media-list__item__label,
 .media-list__item__label > strong {
-    white-space: -moz-pre-wrap !important;
-    white-space: -webkit-pre-wrap !important;
-    white-space: -pre-wrap !important;
-    white-space: -o-pre-wrap !important;
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important;
-    word-break: break-all !important;
-    white-space: normal !important;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .media-list__item__label > strong {
-    display: block !important;
+    display: block;
 }
 
 .media-list__item__input {
     z-index: 99;
-    position: absolute !important;
+    position: absolute;
     bottom: 10px;
     right: 10px;
-}
-
-.media-list__item__input:hover {
     cursor: pointer;
 }
 
 .media-list__item__img {
-    width: 150px !important;
-    height: 150px !important;
-}
-
-.btn {
-    display: inline-block !important;
-    font-size: 1.4em !important;
-}
-
-.btn:hover {
-    cursor: pointer;
-}
-
-.page-number {
-    font-size: 1.4em !important;
-}
-
-.btn-delete {
-    position: absolute;
-    font-weight: bold;
-    color: #db2828;
-    right: 30px;
-    cursor: pointer;
-    z-index: 5;
-    width: 20px;
-    height: 20px;
-
-    &.is-hidden {
-        pointer-events: none;
-        opacity: 0.2;
-    }
-}
-
-.bitbag-media-autocomplete .dropdown.icon {
-    pointer-events: none;
-}
-
-.bitbag-media-autocomplete .search {
-    cursor: pointer !important;
+    width: 150px;
+    height: 150px;
 }

@@ -9,6 +9,7 @@ bitbag_sylius_cms_plugin_admin_frequently_asked_question:
         permission: true
         vars:
             all:
+                hook_prefix: 'bitbag_sylius_cms_plugin.admin.frequently_asked_question'
                 header: bitbag_sylius_cms_plugin.ui.faq_header
                 subheader: bitbag_sylius_cms_plugin.ui.faq_subheader
                 templates:

@@ -90,9 +90,9 @@ export class HandleSlugUpdate {
     _toggleSlugModification(readOnlyEl, toggler) {
         readOnlyEl.readOnly = !readOnlyEl.readOnly;
 
-        const icon = toggler.querySelector('i');
-        icon.classList.toggle('lock');
-        icon.classList.toggle('unlock');
+        toggler.querySelectorAll('[data-bb-cms-slug-locked], [data-bb-cms-slug-unlocked]').forEach((icon) => {
+            icon.classList.toggle('d-none');
+        });
     }
 }
 

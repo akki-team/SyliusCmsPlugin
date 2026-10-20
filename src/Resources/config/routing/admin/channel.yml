@@ -1,0 +1,10 @@
+bitbag_sylius_cms_plugin_admin_partial_channel_index:
+    path: /_partial/channels
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.channel::indexAction
+        _sylius:
+            repository:
+                method: findAll
+            template: $template
+            permission: true

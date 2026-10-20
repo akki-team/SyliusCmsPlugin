@@ -1,0 +1,9 @@
+{% set configuration = hookable_metadata.context.configuration %}
+{% set form = hookable_metadata.context.form %}
+{% set resource = hookable_metadata.context.resource ?? form.vars.data %}
+
+{% include configuration.vars.templates.form with {
+    form: form,
+    resource: resource,
+    (configuration.metadata.name): resource,
+} %}

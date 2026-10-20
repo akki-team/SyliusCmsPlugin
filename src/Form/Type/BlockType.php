@@ -13,10 +13,10 @@ namespace BitBag\SyliusCmsPlugin\Form\Type;
 use BitBag\SyliusCmsPlugin\Entity\BlockInterface;
 use BitBag\SyliusCmsPlugin\Form\Type\Translation\BlockTranslationType;
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
-use Sylius\Bundle\ProductBundle\Form\Type\ProductAutocompleteChoiceType;
+use Sylius\Bundle\AdminBundle\Form\Type\ProductAutocompleteType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
-use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
+use Sylius\Bundle\AdminBundle\Form\Type\TaxonAutocompleteType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -37,17 +37,20 @@ final class BlockType extends AbstractResourceType
             ->add('sections', SectionAutocompleteChoiceType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.sections',
                 'multiple' => true,
+                'required' => false,
             ])
             ->add('enabled', CheckboxType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.enabled',
             ])
-            ->add('products', ProductAutocompleteChoiceType::class, [
+            ->add('products', ProductAutocompleteType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.products',
                 'multiple' => true,
+                'required' => false,
             ])
-            ->add('taxons', TaxonAutocompleteChoiceType::class, [
+            ->add('taxons', TaxonAutocompleteType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.taxons',
                 'multiple' => true,
+                'required' => false,
             ])
             ->add('channels', ChannelChoiceType::class, [
                 'label' => 'bitbag_sylius_cms_plugin.ui.channels',

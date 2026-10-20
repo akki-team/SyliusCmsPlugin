@@ -1,0 +1,21 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.base#stylesheets':
+            bitbag_cms_styles:
+                template: '@BitBagSyliusCmsPlugin/Asset/_adminStylesheets.html.twig'
+                priority: -100
+
+        'sylius_admin.base#javascripts':
+            bitbag_cms_javascripts:
+                template: '@BitBagSyliusCmsPlugin/Asset/_adminJavascripts.html.twig'
+                priority: -100
+
+        'sylius_shop.base#stylesheets':
+            bitbag_cms_styles:
+                template: '@BitBagSyliusCmsPlugin/Asset/_shopStylesheets.html.twig'
+                priority: -100
+
+        'sylius_shop.base#javascripts':
+            bitbag_cms_javascripts:
+                template: '@BitBagSyliusCmsPlugin/Asset/_shopJavascripts.html.twig'
+                priority: -100

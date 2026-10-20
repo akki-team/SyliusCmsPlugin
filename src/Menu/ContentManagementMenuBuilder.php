@@ -21,6 +21,7 @@ final class ContentManagementMenuBuilder
         $cmsRootMenuItem = $menu
             ->addChild('bitbag_cms')
             ->setLabel('bitbag_sylius_cms_plugin.ui.cms')
+            ->setLabelAttribute('icon', 'tabler:file-text')
         ;
 
         $cmsRootMenuItem
@@ -28,7 +29,7 @@ final class ContentManagementMenuBuilder
                 'route' => 'bitbag_sylius_cms_plugin_admin_block_index',
             ])
             ->setLabel('bitbag_sylius_cms_plugin.ui.blocks')
-            ->setLabelAttribute('icon', 'block layout')
+            ->setLabelAttribute('icon', 'tabler:layout-grid')
         ;
 
         $cmsRootMenuItem
@@ -36,7 +37,7 @@ final class ContentManagementMenuBuilder
                 'route' => 'bitbag_sylius_cms_plugin_admin_media_index',
             ])
             ->setLabel('bitbag_sylius_cms_plugin.ui.media')
-            ->setLabelAttribute('icon', 'file')
+            ->setLabelAttribute('icon', 'tabler:photo')
         ;
 
         $cmsRootMenuItem
@@ -44,7 +45,7 @@ final class ContentManagementMenuBuilder
                 'route' => 'bitbag_sylius_cms_plugin_admin_page_index',
             ])
             ->setLabel('bitbag_sylius_cms_plugin.ui.pages')
-            ->setLabelAttribute('icon', 'sticky note')
+            ->setLabelAttribute('icon', 'tabler:file-text')
         ;
 
         $cmsRootMenuItem
@@ -52,7 +53,7 @@ final class ContentManagementMenuBuilder
                 'route' => 'bitbag_sylius_cms_plugin_admin_frequently_asked_question_index',
             ])
             ->setLabel('bitbag_sylius_cms_plugin.ui.faq')
-            ->setLabelAttribute('icon', 'help')
+            ->setLabelAttribute('icon', 'tabler:help')
         ;
 
         $cmsRootMenuItem
@@ -60,7 +61,7 @@ final class ContentManagementMenuBuilder
                 'route' => 'bitbag_sylius_cms_plugin_admin_section_index',
             ])
             ->setLabel('bitbag_sylius_cms_plugin.ui.sections')
-            ->setLabelAttribute('icon', 'grid layout')
+            ->setLabelAttribute('icon', 'tabler:category')
         ;
     }
 }
