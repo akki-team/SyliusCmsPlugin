@@ -34,7 +34,10 @@ no data migration is needed and templates overridden under `templates/bundles/Bi
   the model class as constructor argument and are registered as services). The Semantic UI media autocomplete script is
   removed.
 - `sonata_block_render_event` events of the CRUD templates are replaced by Twig Hooks.
-- The admin AJAX endpoints (`bitbag_sylius_cms_plugin_admin_ajax_*`) no longer depend on FOSRestBundle.
+- The section AJAX endpoints (`bitbag_sylius_cms_plugin_admin_ajax_section_by_name_phrase` and
+  `bitbag_sylius_cms_plugin_admin_ajax_section_by_code`) are removed: section fields use the Symfony UX autocomplete.
+- The media AJAX endpoints no longer depend on FOSRestBundle. The CKEditor media dialogs no longer use jQuery nor the
+  global `route` variable: the plugin sets `window.bitbagCmsMediaSearchUrl` in the `sylius_admin.base#javascripts` hook.
 - The channel switch of the preview modal uses the new `bitbag_sylius_cms_plugin_admin_partial_channel_index` route.
 - The menu uses Tabler icons.
 

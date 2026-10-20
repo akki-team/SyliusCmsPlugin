@@ -84,11 +84,6 @@ return static function (ContainerConfigurator $container): void {
 
     $services->set('bitbag_sylius_cms_plugin.controller.action.admin.retrieve_package_info', \BitBag\SyliusCmsPlugin\Controller\Action\Admin\RetrievePackageInfoAction::class);
 
-    $services->set('bitbag_sylius_cms_plugin.controller.action.admin.section_search', \BitBag\SyliusCmsPlugin\Controller\Action\Admin\SectionSearchAction::class)
-        ->args([
-            service('bitbag_sylius_cms_plugin.repository.section'),
-        ]);
-
     $services->set('bitbag_sylius_cms_plugin.controller.action.admin.media_search', \BitBag\SyliusCmsPlugin\Controller\Action\Admin\MediaSearchAction::class)
         ->args([
             service('bitbag_sylius_cms_plugin.repository.media'),

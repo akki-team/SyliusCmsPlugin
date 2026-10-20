@@ -18,17 +18,3 @@ bitbag_sylius_cms_plugin_admin_section:
                 icon: grid layout
     type: sylius.resource
 
-bitbag_sylius_cms_plugin_admin_ajax_section_by_name_phrase:
-    path: /ajax/sections/search
-    methods: [GET]
-    defaults:
-        _format: json
-        _controller: bitbag_sylius_cms_plugin.controller.action.admin.section_search
-
-bitbag_sylius_cms_plugin_admin_ajax_section_by_code:
-    path: /ajax/sections/code
-    methods: [GET]
-    defaults:
-        _format: json
-        _controller: bitbag_sylius_cms_plugin.controller.action.admin.section_search
-

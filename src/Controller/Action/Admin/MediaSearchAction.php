@@ -12,6 +12,7 @@ namespace BitBag\SyliusCmsPlugin\Controller\Action\Admin;
 
 use BitBag\SyliusCmsPlugin\Entity\MediaInterface;
 use BitBag\SyliusCmsPlugin\Repository\MediaRepositoryInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,9 +33,12 @@ final class MediaSearchAction
             return new JsonResponse($this->serialize($this->mediaRepository->findBy(['code' => (array) $query['code']])));
         }
 
+        $page = max(1, (int) ($query['page'] ?? 1));
+        $limit = max(1, (int) ($query['limit'] ?? 10));
         $queryBuilder = $this->mediaRepository
             ->createListQueryBuilder($this->localeContext->getLocaleCode())
-            ->setMaxResults(max(1, (int) ($query['limit'] ?? 10)))
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit)
         ;
 
         $phrase = trim((string) ($query['criteria']['search']['value'] ?? ''));
@@ -45,14 +49,22 @@ final class MediaSearchAction
             ;
         }
 
-        if (isset($query['mediaType']) && '' !== $query['mediaType']) {
+        $type = (string) ($query['criteria']['type'] ?? '');
+        if ('' !== $type) {
             $queryBuilder
-                ->andWhere('o.type = :mediaType')
-                ->setParameter('mediaType', $query['mediaType'])
+                ->andWhere('o.type = :type')
+                ->setParameter('type', $type)
             ;
         }
 
-        return new JsonResponse(['_embedded' => ['items' => $this->serialize($queryBuilder->getQuery()->getResult())]]);
+        $paginator = new Paginator($queryBuilder);
+
+        return new JsonResponse([
+            'page' => $page,
+            'limit' => $limit,
+            'total' => count($paginator),
+            '_embedded' => ['items' => $this->serialize(iterator_to_array($paginator))],
+        ]);
     }
 
     /** @param array<array-key, mixed> $media */

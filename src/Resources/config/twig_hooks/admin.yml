@@ -4,6 +4,9 @@ sylius_twig_hooks:
             bitbag_cms_version_script:
                 template: '@BitBagSyliusCmsPlugin/Asset/_cmsVersionScript.html.twig'
                 priority: 30
+            bitbag_cms_media_search_url:
+                template: '@BitBagSyliusCmsPlugin/Asset/_mediaSearchUrl.html.twig'
+                priority: 20
 
         'bitbag_sylius_cms_plugin.admin.block.index.content.header.title_block':
             title:
