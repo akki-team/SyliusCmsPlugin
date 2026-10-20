@@ -13,12 +13,10 @@ namespace BitBag\SyliusCmsPlugin\Controller;
 use BitBag\SyliusCmsPlugin\Entity\PageInterface;
 use BitBag\SyliusCmsPlugin\Entity\PageTranslationInterface;
 use BitBag\SyliusCmsPlugin\Resolver\PageResourceResolverInterface;
-use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Resource\ResourceActions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 final class PageController extends ResourceController
 {
@@ -55,9 +53,7 @@ final class PageController extends ResourceController
             ]);
         }
 
-        Assert::true(null !== $this->viewHandler);
-
-        return $this->viewHandler->handle($configuration, View::create($page));
+        return $this->createRestView($configuration, $page);
     }
 
     public function previewAction(Request $request): Response
@@ -69,7 +65,7 @@ final class PageController extends ResourceController
         /** @var PageInterface $page */
         $page = $this->getResourceInterface($request);
         $form = $this->getFormForResource($configuration, $page);
-        $defaultLocale = $this->getParameter('locale');
+        $defaultLocale = (string) $this->getParameter('locale');
 
         $form->handleRequest($request);
 
@@ -81,8 +77,7 @@ final class PageController extends ResourceController
         $this->formErrorsFlashHelper->addFlashErrors($form);
 
         if (!$configuration->isHtmlRequest()) {
-            Assert::true(null !== $this->viewHandler);
-            $this->viewHandler->handle($configuration, View::create($page));
+            return $this->createRestView($configuration, $page);
         }
 
         return $this->render($configuration->getTemplate(ResourceActions::CREATE . '.html'), [

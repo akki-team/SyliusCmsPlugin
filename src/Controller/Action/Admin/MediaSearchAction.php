@@ -55,7 +55,7 @@ final class MediaSearchAction
         return new JsonResponse(['_embedded' => ['items' => $this->serialize($queryBuilder->getQuery()->getResult())]]);
     }
 
-    /** @param MediaInterface[] $media */
+    /** @param array<array-key, mixed> $media */
     private function serialize(array $media): array
     {
         return array_map(static fn (MediaInterface $item): array => [

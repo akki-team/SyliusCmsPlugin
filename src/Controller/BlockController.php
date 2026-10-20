@@ -12,12 +12,10 @@ namespace BitBag\SyliusCmsPlugin\Controller;
 
 use BitBag\SyliusCmsPlugin\Entity\BlockInterface;
 use BitBag\SyliusCmsPlugin\Resolver\BlockResourceResolverInterface;
-use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Resource\ResourceActions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 final class BlockController extends ResourceController
 {
@@ -41,9 +39,7 @@ final class BlockController extends ResourceController
         $this->eventDispatcher->dispatch(ResourceActions::SHOW, $configuration, $block);
 
         if (!$configuration->isHtmlRequest()) {
-            Assert::true(null !== $this->viewHandler);
-
-            return $this->viewHandler->handle($configuration, View::create($block));
+            return $this->createRestView($configuration, $block);
         }
 
         $template = $request->attributes->get('template', $request->query->get('template')) ?? self::BLOCK_TEMPLATE;
@@ -69,15 +65,13 @@ final class BlockController extends ResourceController
 
         /** @var BlockInterface $block */
         $block = $form->getData();
-        $defaultLocale = $this->getParameter('locale');
+        $defaultLocale = (string) $this->getParameter('locale');
 
         $block->setFallbackLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
         $block->setCurrentLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
 
         if (!$configuration->isHtmlRequest()) {
-            Assert::true(null !== $this->viewHandler);
-
-            return $this->viewHandler->handle($configuration, View::create($block));
+            return $this->createRestView($configuration, $block);
         }
 
         return $this->render($configuration->getTemplate(ResourceActions::CREATE . '.html'), [

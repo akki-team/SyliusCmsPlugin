@@ -120,7 +120,7 @@ final class MediaController extends ResourceController
 
     private function setMediaLocales(MediaInterface $media, Request $request): void
     {
-        $defaultLocale = $this->getParameter('locale');
+        $defaultLocale = (string) $this->getParameter('locale');
         $media->setFallbackLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
         $media->setCurrentLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
     }

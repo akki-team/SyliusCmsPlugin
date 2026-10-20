@@ -48,7 +48,7 @@ trait ResourceDataProcessingTrait
     private function setPathForImageMediaType(MediaInterface $media): void
     {
         Assert::string($media->getPath());
-        $this->setFileContentsAsMediaPath($media, $this->dataManager->find($this::FILTER, $media->getPath())->getContent());
+        $this->setFileContentsAsMediaPath($media, (string) $this->dataManager->find($this::FILTER, $media->getPath())->getContent());
     }
 
     private function setPathForNonImageMediaType(MediaInterface $media): void
