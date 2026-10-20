@@ -1,7 +1,7 @@
 ## Installation
 
 
-##### 1. Require the plugin (Sylius 2.3, PHP 8.2 to 8.5)
+##### 1. Require the plugin (Sylius 2.3, PHP 8.3 to 8.5)
 
 Version 5 is published by the akki-team fork. Declare the repository, then require the tag:
 
@@ -142,7 +142,7 @@ $ APP_ENV=test vendor/bin/console ckeditor:install --clear=drop
 $ APP_ENV=test vendor/bin/console assets:install
 $ APP_ENV=test vendor/bin/console doctrine:database:create
 $ APP_ENV=test vendor/bin/console doctrine:schema:create
-$ APP_ENV=test symfony server:start --dir=vendor/sylius/test-application/public --port=8080 -d
+$ APP_ENV=test symfony server:start --no-tls --dir=vendor/sylius/test-application/public --port=8080 -d
 $ open http://localhost:8080
 $ vendor/bin/phpspec run
 $ vendor/bin/phpunit

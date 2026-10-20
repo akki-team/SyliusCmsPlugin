@@ -51,7 +51,7 @@ $ APP_ENV=test vendor/bin/console ckeditor:install --clear=drop
 $ APP_ENV=test vendor/bin/console assets:install
 $ APP_ENV=test vendor/bin/console doctrine:database:create
 $ APP_ENV=test vendor/bin/console doctrine:schema:create
-$ APP_ENV=test symfony server:start --dir=vendor/sylius/test-application/public --port=8080 -d
+$ APP_ENV=test symfony server:start --no-tls --dir=vendor/sylius/test-application/public --port=8080 -d
 $ open http://localhost:8080
 $ vendor/bin/phpspec run
 $ vendor/bin/phpunit

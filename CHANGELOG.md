@@ -6,7 +6,7 @@ Sylius 2.3 / Symfony 7.4 / PHP 8.5 support, without data migration. See [UPGRADE
 
 **Changed:**
 
-- Sylius `^2.3`, PHP `^8.2`, FOSCKEditorBundle `^2.7`, Webpack Encore bundle `^2.0`, API Platform 4
+- Sylius `^2.3`, PHP `^8.3`, FOSCKEditorBundle `^2.7`, Webpack Encore bundle `^2.0`, API Platform 4
 - Services in PHP configuration, same identifiers
 - Media storage on Flysystem instead of Gaufrette, same paths
 - Admin on the Sylius 2 CRUD templates, Twig Hooks, Bootstrap 5 and Symfony UX autocompletes

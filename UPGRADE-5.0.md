@@ -1,12 +1,12 @@
 # UPGRADE FROM `v4.4` TO `v5.0`
 
-Version 5.0 runs on Sylius 2.3, Symfony 7.4 and PHP 8.2 to 8.5. The data model, the database tables, the namespace
+Version 5.0 runs on Sylius 2.3, Symfony 7.4 and PHP 8.3 to 8.5. The data model, the database tables, the namespace
 (`BitBag\SyliusCmsPlugin`), the bundle name, the service identifiers, the routes and the translation keys are unchanged:
 no data migration is needed and templates overridden under `templates/bundles/BitBagSyliusCmsPlugin` keep their paths.
 
 ## Requirements
 
-- `sylius/sylius` `^2.3`, `php` `^8.2`
+- `sylius/sylius` `^2.3`, `php` `^8.3`
 - `friendsofsymfony/ckeditor-bundle` `^2.7`, `symfony/webpack-encore-bundle` `^2.0`
 - API Platform 4
 
