@@ -1,5 +1,33 @@
 # Change Log
 
+## 5.0.0 (akki-team fork)
+
+Sylius 2.3 / Symfony 7.4 / PHP 8.5 support, without data migration. See [UPGRADE-5.0.md](UPGRADE-5.0.md).
+
+**Changed:**
+
+- Sylius `^2.3`, PHP `^8.2`, FOSCKEditorBundle `^2.7`, Webpack Encore bundle `^2.0`, API Platform 4
+- Services in PHP configuration, same identifiers
+- Media storage on Flysystem instead of Gaufrette, same paths
+- Admin on the Sylius 2 CRUD templates, Twig Hooks, Bootstrap 5 and Symfony UX autocompletes
+- Shop templates on the Sylius 2 shop layout
+- API resources in the API Platform 3+ metadata format, same paths
+- Optional JMS serializer metadata
+
+**Fixed:**
+
+- `Media::__toString()` no longer throws on a media without name and code
+- Page and media previews read images without an HTTP request to the site itself
+- Block fixtures resolve products for the block channels instead of the current channel
+- CSV import ignores empty image and association columns
+- The Trix admin entry loads the admin scripts (slug, preview, CSV import)
+- CKEditor instances are updated before a preview
+- The section page list without grid (`bitbag_sylius_cms_plugin_shop_page_index_by_section_code_no_grid`) renders
+
+**Known limitations:**
+
+- The Behat and phpspec suites still target the Sylius 1 test application and are not run in this release
+
 ## [Unreleased](https://github.com/BitBagCommerce/SyliusCmsPlugin/tree/HEAD)
 
 [Full Changelog](https://github.com/BitBagCommerce/SyliusCmsPlugin/compare/v2.0.0-rc.2...HEAD)

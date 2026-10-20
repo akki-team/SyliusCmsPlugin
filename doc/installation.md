@@ -1,10 +1,18 @@
 ## Installation
 
 
-##### 1. *We work on stable, supported and up-to-date versions of packages. We recommend you to do the same.*
+##### 1. Require the plugin (Sylius 2.3, PHP 8.2 to 8.5)
+
+Version 5 is published by the akki-team fork. Declare the repository, then require the tag:
+
+```json
+"repositories": [
+    { "type": "vcs", "url": "https://github.com/akki-team/SyliusCmsPlugin" }
+]
+```
 
 ```bash
-$ composer require bitbag/cms-plugin --no-scripts
+$ composer require bitbag/cms-plugin:^5.0 --no-scripts
 ```
 
 ##### 2. Add plugin dependencies to your `config/bundles.php` file:
@@ -85,6 +93,10 @@ $ bin/console doctrine:schema:update --dump-sql # and --force switch when you're
 
 $ bin/console assets:install --symlink
 $ bin/console sylius:theme:assets:install --symlink
+
+# CKEditor 4 (default WYSIWYG editor)
+$ bin/console ckeditor:install --tag=4.22.1
+$ bin/console assets:install --symlink
 ```
 
 **Note.** In some cases, the `--symlink` option [may throw some errors](https://github.com/Sylius/SyliusThemeBundle/issues/91). If you consider running the commands without the `--symlink` option, please keep in mind to run them on every potential plugin update.
@@ -105,17 +117,19 @@ However, if you are not using Webpack, here are instructions on how to add optim
 
 - [Non webpack solution](./01.5-non-webpack.md)
 
-##### 8. Passing required "backend" values to "frontend"
+##### 8. Load the plugin assets in the admin and the shop
 
-In order to make plugin finally work you need to declare "route", in admin _scripts.html.twig you can pass:
+When the plugin assets are built as separate `cms_admin` and `cms_shop` Encore builds (see step 7), declare both builds
+in `config/packages/webpack_encore.yaml` and `config/packages/assets.yaml`, then import the hooks that include them:
 
+```yaml
+# config/packages/_sylius.yaml
+
+imports:
+    ...
+
+    - { resource: "@BitBagSyliusCmsPlugin/Resources/config/twig_hooks/assets.yml" }
 ```
-<script>
-    const route = "{{ path('bitbag_sylius_cms_plugin_admin_ajax_media_by_name_phrase')|escape('js') }}";
-</script>
-```
-
-Any other approach, that will allow cms pages to read this value in js, under "route" key, will work. 
 
 ## Testing & running the plugin
 ```bash
