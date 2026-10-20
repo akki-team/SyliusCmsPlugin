@@ -18,6 +18,6 @@ trait ContainsEmptyListTrait
 
     public function isEmpty(): bool
     {
-        return false !== strpos($this->getDocument()->find('css', '.message')->getText(), 'There are no results to display');
+        return $this->getDocument()->has('css', '.empty .empty-title');
     }
 }

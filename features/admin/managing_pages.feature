@@ -30,7 +30,7 @@ Feature: Managing cms pages
         And I update it
         Then I should be notified that the page was updated
 
-    @ui
+    @ui @javascript
     Scenario: Updating page with image
         Given there is a page in the store
         And there is an existing "image" media with "aston-martin" code

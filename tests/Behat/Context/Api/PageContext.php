@@ -14,7 +14,6 @@ use Behat\Behat\Context\Context;
 use BitBag\SyliusCmsPlugin\Entity\PageInterface;
 use Sylius\Behat\Client\ApiClientInterface;
 use Sylius\Behat\Client\ResponseCheckerInterface;
-use Sylius\Bundle\CoreBundle\Application\Kernel as SyliusKernel;
 use Tests\BitBag\SyliusCmsPlugin\Behat\Resources;
 use Webmozart\Assert\Assert;
 
@@ -69,11 +68,7 @@ final class PageContext implements Context
      */
     public function iOpenPage(PageInterface $page): void
     {
-        if (SyliusKernel::MINOR_VERSION === '11') {
-            $this->apiClient->show((string) $page->getId());
-        } else {
-            $this->apiClient->show(Resources::PAGES, (string) $page->getId());
-        }
+        $this->apiClient->show(Resources::PAGES, (string) $page->getId());
     }
 
     /**

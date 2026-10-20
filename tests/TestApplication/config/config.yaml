@@ -13,6 +13,10 @@ twig:
 
 sylius_twig_hooks:
     hooks:
+        'sylius_shop.base.header':
+            bitbag_cms_page_link:
+                template: 'shared/cms_page_link.html.twig'
+                priority: 150
         'sylius_shop.homepage.index':
             bitbag_cms:
                 template: 'homepage/cms.html.twig'
@@ -299,5 +303,9 @@ sylius_fixtures:
                                             Nam his libris eum malo quam reliquo ornatu villae delectari. Quid est, quod ab ea absolvi et perfici debeat? Ex quo, id quod omnes expetunt, beate vivendi ratio inveniri et comparari potest. Stoici scilicet.
 
 when@test:
+    imports:
+        - { resource: "../../../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.php" }
+        - { resource: "../../Behat/Resources/services.xml" }
+
     framework:
         profiler: false

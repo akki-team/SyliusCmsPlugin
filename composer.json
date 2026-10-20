@@ -94,6 +94,9 @@
     "symfony": {
       "allow-contrib": false,
       "require": "7.4.*"
+    },
+    "symfony/flex": {
+      "synchronize_package_json": false
     }
   },
   "scripts": {
