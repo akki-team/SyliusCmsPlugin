@@ -48,7 +48,7 @@ final class MediaController extends ResourceController
 
         $this->eventDispatcher->dispatch(ResourceActions::SHOW, $configuration, $media);
 
-        return new Response($this->mediaProviderResolver->resolveProvider($media)->render($media, $request->get('template')));
+        return new Response($this->mediaProviderResolver->resolveProvider($media)->render($media, $request->attributes->get('template', $request->query->get('template'))));
     }
 
     public function downloadMediaAction(Request $request): Response
@@ -65,7 +65,7 @@ final class MediaController extends ResourceController
         $response = new BinaryFileResponse($mediaPath);
 
         $response->setContentDisposition(
-            $request->get('disposition', ResponseHeaderBag::DISPOSITION_ATTACHMENT),
+            $request->attributes->get('disposition', $request->query->get('disposition', ResponseHeaderBag::DISPOSITION_ATTACHMENT)),
             $mediaName,
         );
         $response->headers->set('Content-Type', $media->getMimeType());
@@ -113,7 +113,7 @@ final class MediaController extends ResourceController
     private function getMediaForRequestCode(RequestConfiguration $configuration, Request $request): ?MediaInterface
     {
         $this->isGrantedOr403($configuration, ResourceActions::SHOW);
-        $code = $request->get('code');
+        $code = $request->attributes->get('code', $request->query->get('code'));
 
         return $this->mediaResourceResolver->findOrLog($code);
     }
@@ -121,8 +121,8 @@ final class MediaController extends ResourceController
     private function setMediaLocales(MediaInterface $media, Request $request): void
     {
         $defaultLocale = $this->getParameter('locale');
-        $media->setFallbackLocale($request->get('_locale', $defaultLocale));
-        $media->setCurrentLocale($request->get('_locale', $defaultLocale));
+        $media->setFallbackLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
+        $media->setCurrentLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
     }
 
     private function setMediaPathIfExists(MediaInterface $media): void

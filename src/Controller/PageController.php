@@ -36,7 +36,7 @@ final class PageController extends ResourceController
 
         $this->isGrantedOr403($configuration, ResourceActions::SHOW);
 
-        $code = $request->get('code');
+        $code = $request->attributes->get('code', $request->query->get('code'));
 
         $page = $this->pageResourceResolver->findOrLog($code);
 
@@ -73,8 +73,8 @@ final class PageController extends ResourceController
 
         $form->handleRequest($request);
 
-        $page->setFallbackLocale($request->get('_locale', $defaultLocale));
-        $page->setCurrentLocale($request->get('_locale', $defaultLocale));
+        $page->setFallbackLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
+        $page->setCurrentLocale($request->attributes->get('_locale', $request->query->get('_locale', $defaultLocale)));
 
         $this->resolveImage($page);
 
