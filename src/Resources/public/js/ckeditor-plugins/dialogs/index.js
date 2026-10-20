@@ -124,27 +124,27 @@ function changePage(page, next, prev, number) {
     }
 }
 
-function showMediaImages(phrase, pageNumber) {
-    const myObject = {
-        criteria: {
-            search: {
-                type: 'contains',
-                value: phrase,
-            },
-            type: 'image',
-        },
+function fetchMedia(type, phrase, pageNumber) {
+    const params = new URLSearchParams({
+        'criteria[search][type]': 'contains',
+        'criteria[search][value]': phrase,
+        'criteria[type]': type,
         page: pageNumber,
         limit: limit,
-    };
+    });
 
-    const shallowEncoded = $.param(myObject);
-    const shallowDecoded = decodeURIComponent(shallowEncoded);
+    return fetch(`${window.bitbagCmsMediaSearchUrl}?${params}`, { headers: { Accept: 'application/json' } }).then((response) => {
+        if (!response.ok) {
+            throw new Error(`${response.status} ${response.statusText}`);
+        }
 
-    $.ajax({
-        type: 'GET',
-        url: `${route}?${shallowDecoded}`,
-        dataType: 'JSON',
-        success(data) {
+        return response.json();
+    });
+}
+
+function showMediaImages(phrase, pageNumber) {
+    fetchMedia('image', phrase, pageNumber)
+        .then((data) => {
             totalPages = numPages(data.total);
             changePage(currentPage, 'image-btn-next', 'image-btn-prev', 'image-page-number');
             const element = CKEDITOR.document.getById('media-image-list');
@@ -152,34 +152,15 @@ function showMediaImages(phrase, pageNumber) {
             if (element) {
                 element.setHtml(insertImageHtml(data._embedded.items));
             }
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            console.error(`ajax error ${textStatus} ${errorThrown}`);
-        },
-    });
+        })
+        .catch((error) => {
+            console.error(`media search error ${error}`);
+        });
 }
 
 function showMediaVideos(phrase, pageNumber) {
-    const myObject = {
-        criteria: {
-            search: {
-                type: 'contains',
-                value: phrase,
-            },
-            type: 'video',
-        },
-        page: pageNumber,
-        limit: limit,
-    };
-
-    const shallowEncoded = $.param(myObject);
-    const shallowDecoded = decodeURIComponent(shallowEncoded);
-
-    $.ajax({
-        type: 'GET',
-        url: `${route}?${shallowDecoded}`,
-        dataType: 'JSON',
-        success(data) {
+    fetchMedia('video', phrase, pageNumber)
+        .then((data) => {
             totalPages = numPages(data.total);
             changePage(currentPage, 'video-btn-next', 'video-btn-prev', 'video-page-number');
             const element = CKEDITOR.document.getById('media-video-list');
@@ -187,11 +168,10 @@ function showMediaVideos(phrase, pageNumber) {
             if (element) {
                 element.setHtml(insertVideoHtml(data._embedded.items));
             }
-        },
-        error(jqXHR, textStatus, errorThrown) {
-            console.error(`ajax error ${textStatus} ${errorThrown}`);
-        },
-    });
+        })
+        .catch((error) => {
+            console.error(`media search error ${error}`);
+        });
 }
 
 CKEDITOR.dialog.add('videoDialog', (editor) => ({
@@ -201,6 +181,7 @@ CKEDITOR.dialog.add('videoDialog', (editor) => ({
     resizable: CKEDITOR.DIALOG_RESIZE_NONE,
     onShow() {
         phrase = '';
+        currentPage = 1;
         showMediaVideos(phrase, currentPage);
     },
 
@@ -222,6 +203,7 @@ CKEDITOR.dialog.add('videoDialog', (editor) => ({
                         }
 
                         oldValue = this.getValue();
+                        currentPage = 1;
                         changePage(currentPage, 'video-btn-next', 'video-btn-prev', 'video-page-number');
                         showMediaVideos(phrase, currentPage);
                     },
@@ -304,6 +286,7 @@ CKEDITOR.dialog.add('imageDialog', (editor) => ({
     resizable: CKEDITOR.DIALOG_RESIZE_NONE,
     onShow() {
         phrase = '';
+        currentPage = 1;
         showMediaImages(phrase, currentPage);
     },
 
@@ -325,6 +308,7 @@ CKEDITOR.dialog.add('imageDialog', (editor) => ({
                         }
 
                         oldValue = this.getValue();
+                        currentPage = 1;
                         changePage(currentPage, 'image-btn-next', 'image-btn-prev', 'image-page-number');
                         showMediaImages(phrase, currentPage);
                     },
