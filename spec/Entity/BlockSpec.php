@@ -17,7 +17,7 @@ use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 
 final class BlockSpec extends ObjectBehavior
 {

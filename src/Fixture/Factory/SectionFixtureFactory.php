@@ -13,7 +13,7 @@ namespace BitBag\SyliusCmsPlugin\Fixture\Factory;
 use BitBag\SyliusCmsPlugin\Entity\SectionInterface;
 use BitBag\SyliusCmsPlugin\Entity\SectionTranslationInterface;
 use BitBag\SyliusCmsPlugin\Repository\SectionRepositoryInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
 
 final class SectionFixtureFactory implements FixtureFactoryInterface
 {

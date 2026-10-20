@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCmsPlugin\Entity;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\TranslationInterface;
 
 interface MediaTranslationInterface extends ResourceInterface, TranslationInterface
 {

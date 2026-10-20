@@ -12,9 +12,9 @@ namespace spec\BitBag\SyliusCmsPlugin\Resolver;
 
 use BitBag\SyliusCmsPlugin\Resolver\ResourceResolver;
 use PhpSpec\ObjectBehavior;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Model\ResourceInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 
 final class ResourceResolverSpec extends ObjectBehavior
 {

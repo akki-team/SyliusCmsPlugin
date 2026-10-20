@@ -14,7 +14,7 @@ use BitBag\SyliusCmsPlugin\Assigner\ChannelsAssignerInterface;
 use BitBag\SyliusCmsPlugin\Entity\FrequentlyAskedQuestionInterface;
 use BitBag\SyliusCmsPlugin\Entity\FrequentlyAskedQuestionTranslationInterface;
 use BitBag\SyliusCmsPlugin\Repository\FrequentlyAskedQuestionRepositoryInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
 
 final class FrequentlyAskedQuestionFixtureFactory implements FixtureFactoryInterface
 {

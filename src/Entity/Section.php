@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCmsPlugin\Entity;
 
-use Sylius\Component\Resource\Model\TranslatableTrait;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Resource\Model\TranslatableTrait;
+use Sylius\Resource\Model\TranslationInterface;
 
 class Section implements SectionInterface
 {

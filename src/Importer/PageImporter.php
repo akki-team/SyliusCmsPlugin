@@ -21,7 +21,7 @@ use BitBag\SyliusCmsPlugin\Resolver\MediaProviderResolverInterface;
 use BitBag\SyliusCmsPlugin\Resolver\ResourceResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Webmozart\Assert\Assert;

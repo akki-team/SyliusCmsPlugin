@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCmsPlugin\Entity;
 
-use Sylius\Component\Resource\Model\AbstractTranslation;
+use Sylius\Resource\Model\AbstractTranslation;
 
 class SectionTranslation extends AbstractTranslation implements SectionTranslationInterface
 {

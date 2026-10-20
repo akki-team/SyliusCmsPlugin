@@ -13,8 +13,8 @@ namespace spec\BitBag\SyliusCmsPlugin\Entity;
 use BitBag\SyliusCmsPlugin\Entity\SectionTranslation;
 use BitBag\SyliusCmsPlugin\Entity\SectionTranslationInterface;
 use PhpSpec\ObjectBehavior;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\TranslationInterface;
 
 final class SectionTranslationSpec extends ObjectBehavior
 {

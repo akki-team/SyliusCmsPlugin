@@ -6,7 +6,7 @@ namespace BitBag\SyliusCmsPlugin\Controller;
 
 use BitBag\SyliusCmsPlugin\Entity\MediaInterface;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;

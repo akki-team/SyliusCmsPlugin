@@ -13,8 +13,8 @@ namespace spec\BitBag\SyliusCmsPlugin\Entity;
 use BitBag\SyliusCmsPlugin\Entity\MediaTranslation;
 use BitBag\SyliusCmsPlugin\Entity\MediaTranslationInterface;
 use PhpSpec\ObjectBehavior;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\TranslationInterface;
 
 final class MediaTranslationSpec extends ObjectBehavior
 {

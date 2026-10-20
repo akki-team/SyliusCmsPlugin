@@ -16,7 +16,7 @@ use BitBag\SyliusCmsPlugin\Entity\SectionInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 
 final class PageSpec extends ObjectBehavior
 {

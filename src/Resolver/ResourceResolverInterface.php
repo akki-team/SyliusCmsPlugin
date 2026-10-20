@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusCmsPlugin\Resolver;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 
 interface ResourceResolverInterface
 {

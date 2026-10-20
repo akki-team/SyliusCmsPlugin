@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace BitBag\SyliusCmsPlugin\Resolver;
 
 use BadFunctionCallException;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Model\ResourceInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 
 final class ResourceResolver implements ResourceResolverInterface
 {
