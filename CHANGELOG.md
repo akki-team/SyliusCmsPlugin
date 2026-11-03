@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.2 (akki-team fork)
+
+**Fixed:**
+
+- Page, block and media previews no longer extend the Sylius 2 shop layout (`@SyliusShop/shared/layout/base.html.twig`): they render on their own layout (`@BitBagSyliusCmsPlugin/Preview/layout.html.twig`, admin stylesheets), so they work in applications whose shop runs on `sylius/legacy-shop-bridge-plugin` or a theme without the Sylius 2 shop build. The page preview shows the page name, image and content
+
 ## 5.0.1 (akki-team fork)
 
 **Changed:**

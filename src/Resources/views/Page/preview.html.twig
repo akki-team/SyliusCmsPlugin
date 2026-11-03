@@ -1,6 +1,17 @@
-{% extends "@BitBagSyliusCmsPlugin/Shop/Page/show.html.twig" %}
+{% extends '@BitBagSyliusCmsPlugin/Preview/layout.html.twig' %}
 
-{% block metatags %}
-    {{ parent() }}
-    <base href="{{ app.request.getSchemeAndHttpHost() }}">
+{% block title %}{{ page.title is not empty ? page.title : page.name }}{% endblock %}
+
+{% block content %}
+    <h1 class="border-bottom pb-3 mb-4 bitbag-page-name">{{ page.name }}</h1>
+
+    {% if page.image %}
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-8">
+                <img class="page-image img-fluid" src="{{ page.image.path }}" alt="">
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="bitbag-page-content">{{ bitbag_cms_render_content(page) }}</div>
 {% endblock %}
