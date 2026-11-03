@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="{{ app.request.getSchemeAndHttpHost() }}">
+    <title>{% block title %}{{ 'bitbag_sylius_cms_plugin.ui.preview'|trans }}{% endblock %}</title>
+    {{ encore_entry_link_tags('admin-entry', null, 'admin') }}
+</head>
+<body>
+    <div class="container my-5">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

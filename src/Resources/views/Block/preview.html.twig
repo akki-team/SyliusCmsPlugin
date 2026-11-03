@@ -1,16 +1,9 @@
-{% extends '@SyliusShop/shared/layout/base.html.twig' %}
-
-{% block metatags %}
-    {{ parent() }}
-    <base href="{{ app.request.getSchemeAndHttpHost() }}">
-{% endblock %}
+{% extends '@BitBagSyliusCmsPlugin/Preview/layout.html.twig' %}
 
 {% block content %}
-    <div class="container my-5">
-        <div class="card">
-            <div class="card-body">
+    <div class="card">
+        <div class="card-body">
             {% include blockTemplate %}
-            </div>
         </div>
     </div>
 {% endblock %}
